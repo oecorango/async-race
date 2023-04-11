@@ -394,7 +394,7 @@ const createPopup = (number) => { // собираем модуль
 	modalWindow.append(close);
 
 	const closeIco = document.createElement('img');
-	closeIco.src = '../../assets/ico/carousel/Vector.png';
+	closeIco.src = '../../assets/ico/carousel/vector.png';
 	close.append(closeIco);
 	
 	return modalWindow;
