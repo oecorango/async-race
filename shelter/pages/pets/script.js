@@ -1,4 +1,4 @@
-console.log('Реализация бургер-меню на обеих страницах - 26 баллов \n Реализация слайдера карусели на странице мэйн - 36 баллов \n Реализация пагинации на странице Pets - 36 баллов \n Итого: 98 баллов \n PS: Попап чуть чуть не успел допилить, 3 часа до дедлайна, если будет время проверить чуть позже, то его тоже сделаю \n PPS: Все засыпаю ;) Модальное окно почти сделал, код конечно кривой, да еще и чуть не дописан, завтра точно добью ')
+console.log('Реализация бургер-меню на обеих страницах - 26 баллов \n Реализация слайдера карусели на странице мэйн - 36 баллов \n Реализация пагинации на странице Pets - 36 баллов \n Реализация попап на обоеих страницах - 12 баллов \n Итого: 110 баллов ')
 
 const pets = [
   {
@@ -300,19 +300,36 @@ BTN_LAST.addEventListener('click', moveLast)
 
 // ------------------------- pop-ap----------------------------
 
-const CARD = document.querySelectorAll('.card');
-const POPUP = document.querySelector('.popup__pets')
+const POPUP = document.querySelector('.popup__pets');
+const modalWindow = document.querySelector('.modal__card');
+const closeBtn = document.querySelector('.popup__close');
 
-const getClickedCard = () => {
+const openPopup = () => {
 	PETS_GALLERY.addEventListener('click', (event) => {
 		if (event.target.parentElement.classList.contains('cards')) {
- 			let manePets = event.target.parentElement.children[1].innerText;
-			console.log(manePets)
-			getPopupWindow();
+ 			let namePets = event.target.parentElement.children[1].innerText;
+			for (let i = 0; i < pets.length; i++) {
+				if (pets[i].name === namePets) {
+					POPUP.replaceChildren();
+					POPUP.append(createPopup(i));
+					POPUP.classList.add('active');
+					body.classList.add('lock');
+				}
+			} 
 		}
 	})
 }
-getClickedCard()
+openPopup();
+
+const closePopup = () => {
+	POPUP.addEventListener('click', (event) => {
+		if (event.currentTarget === POPUP) {
+			POPUP.classList.remove('active');
+			body.classList.remove('lock');
+		}
+	})
+}
+closePopup();
 
 const createPopup = (number) => { // собираем модуль
 	const modalWindow = document.createElement('div');
@@ -353,30 +370,32 @@ const createPopup = (number) => { // собираем модуль
 	let span4 = document.createElement('span');
 	
 	const item1 = document.createElement('li');
-	span1.innerText = `Age: ${pets[number].age}`
+	span1.innerHTML = `<b>Age:</b> ${pets[number].age}`
 	item1.append(span1);
 	list.append(item1);
 
 	const item2 = document.createElement('li');
-	span2.innerText = `Inoculations: ${pets[number].inoculations.toString()}`
+	span2.innerHTML = `<b>Inoculations:</b> ${pets[number].inoculations.toString()}`
 	item2.append(span2);
 	list.append(item2);
 	
 	const item3 = document.createElement('li');
-	span3.innerText = `Diseases: ${pets[number].diseases.toString()}`
+	span3.innerHTML = `<b>Diseases:</b> ${pets[number].diseases.toString()}`
 	item3.append(span3);
 	list.append(item3);
 
 	const item4 = document.createElement('li');
-	span4.innerText = `Parasites: ${pets[number].parasites.toString()}`
+	span4.innerHTML = `<b>Parasites:</b> ${pets[number].parasites.toString()}`
 	item4.append(span4);
 	list.append(item4);
+
+	const close = document.createElement('div');
+	close.classList.add('popup__close');
+	modalWindow.append(close);
+
+	const closeIco = document.createElement('img');
+	closeIco.src = '../../assets/ico/carousel/Vector.png';
+	close.append(closeIco);
 	
 	return modalWindow;
-}
-
-const getPopupWindow = () => {
-	POPUP.replaceChildren();
-	POPUP.append(createPopup(2));
-	POPUP.classList.toggle('active');
 }

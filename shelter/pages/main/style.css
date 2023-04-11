@@ -1302,6 +1302,10 @@ img {
   display: none;
 }
 
+.help {
+  background-color: #fff;
+}
+
 .help__wrapper {
   display: flex;
   flex-direction: column;
