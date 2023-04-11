@@ -3,12 +3,12 @@
 }
 
 .navigation__container {
-	background-color: rgba(#000000, .0);
+	background-color: $color-passive-background;
 	@extend %transition;
 	&.active {
 		height: 100%;
 		width: 100%;
-		background-color: rgba(#000000, .5);
+		background-color: $color-active-background;
 		left: 0;
 		top: 0;
 		position: absolute;
