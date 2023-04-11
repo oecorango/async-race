@@ -29,9 +29,6 @@
 	right: 0;
 	background-color: $color-light-s;
 	border-radius: 9px;
-	img {
-		border-radius: 9px 0 0 9px;
-	}
 	@include media-tablet {
 		width: 630px;
 		height: 350px;
@@ -44,6 +41,9 @@
 
 .modal__image {
 	width: 59%;
+	img {
+		border-radius: 9px 0 0 9px;
+	}
 	@include media-tablet {
 		width: 55.5%;
 	}
@@ -105,10 +105,11 @@
 }
 .popup__close {
 	position: absolute;
-	height: 47px;
-	width: 47px;
+	height: 12px;
+	width: 12px;
 	top: -52px;
 	right: -39px;
+	padding: 18px;
 	border: 2px solid $color-primary;
 	border-radius: 100px;
 	cursor: pointer;
@@ -116,8 +117,5 @@
 	&:hover {
 		background-color: $color-primary;
 		@extend %transition;
-	}
-	img {
-		margin: 18px;
 	}
 }

@@ -288,7 +288,7 @@ openPopup();
 
 const closePopup = () => {
 	POPUP.addEventListener('click', (event) => {
-		if (event.currentTarget === POPUP) {
+		if (event.target === POPUP || event.target.classList.contains('popup__close')) {
 			POPUP.classList.remove('active');
 			body.classList.remove('lock');
 		}
@@ -354,13 +354,10 @@ const createPopup = (number) => { // собираем модуль
 	item4.append(span4);
 	list.append(item4);
 
-	const close = document.createElement('div');
-	close.classList.add('popup__close');
-	modalWindow.append(close);
-
 	const closeIco = document.createElement('img');
+	closeIco.classList.add('popup__close');
 	closeIco.src = '../../assets/ico/carousel/vector.png';
-	close.append(closeIco);
+	modalWindow.append(closeIco);
 	
 	return modalWindow;
 }

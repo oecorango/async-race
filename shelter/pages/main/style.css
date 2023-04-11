@@ -784,9 +784,6 @@ img {
   background-color: #FAFAFA;
   border-radius: 9px;
 }
-.modal__card img {
-  border-radius: 9px 0 0 9px;
-}
 @media (max-width: 1000px) {
   .modal__card {
     width: 630px;
@@ -802,6 +799,9 @@ img {
 
 .modal__image {
   width: 59%;
+}
+.modal__image img {
+  border-radius: 9px 0 0 9px;
 }
 @media (max-width: 1000px) {
   .modal__image {
@@ -878,19 +878,17 @@ img {
 
 .popup__close {
   position: absolute;
-  height: 47px;
-  width: 47px;
+  height: 12px;
+  width: 12px;
   top: -52px;
   right: -39px;
+  padding: 18px;
   border: 2px solid #F1CDB3;
   border-radius: 100px;
   cursor: pointer;
 }
 .popup__close:hover {
   background-color: #F1CDB3;
-}
-.popup__close img {
-  margin: 18px;
 }
 
 .navigation {
