@@ -1,0 +1,31 @@
+html {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Georgia';
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  background-color: #9e9e9e;
+}
+
+.score {
+  display: flex;
+  width: 500px;
+  justify-content: space-between;
+}
+
+.time,
+.sum-mine {
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+.settings {
+  display: flex;
+  justify-content: space-between;
+  width: 500px;
+}

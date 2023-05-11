@@ -1,0 +1,66 @@
+.field {
+  display: grid;
+  height: 490px;
+  width: 490px;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  grid-gap: 5px;
+  background-color: #f5f5dc;
+  border: solid 5px #f5f5dc;
+  border-radius: 8px;
+}
+
+.cell {
+  display: flex;
+  background-color: #464646;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.cell-on {
+  background-color: #a3a3a3;
+}
+
+.item {
+  display: none;
+}
+
+.item-on {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.item-1 {
+  color: $color-1;
+}
+
+.item-2 {
+  color: $color-2;
+}
+
+.item-3 {
+  color: $color-3;
+}
+
+.item-4 {
+  color: $color-4;
+}
+
+.item-5 {
+  color: $color-5;
+}
+
+.item-6 {
+  color: $color-6;
+}
+
+.item-7 {
+  color: $color-7;
+}
+
+.item-8 {
+  color: $color-8;
+}

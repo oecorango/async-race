@@ -16,7 +16,7 @@ module.exports = {
   devtool,
   devServer: {
     open: true,
-    hot: true,
+    // hot: true,
   },
   entry: './src/index.js',
   output: {
