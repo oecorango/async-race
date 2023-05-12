@@ -1,24 +1,44 @@
 .field {
   display: grid;
-  height: 490px;
-  width: 490px;
-  grid-template-columns: repeat(10, 1fr);
-  grid-template-rows: repeat(10, 1fr);
   grid-gap: 5px;
   background-color: #f5f5dc;
   border: solid 5px #f5f5dc;
   border-radius: 8px;
 }
 
+.field-eazy {
+  height: 490px;
+  width: 490px;
+  grid-template-columns: repeat(9, 1fr);
+  grid-template-rows: repeat(9, 1fr);
+  font-size: 30px;
+}
+
+.field-medium {
+  height: 490px;
+  width: 490px;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(12, 1fr);
+  font-size: 25px;
+}
+
+.field-hard {
+  height: 490px;
+  width: 490px;
+  grid-template-columns: repeat(15, 1fr);
+  grid-template-rows: repeat(15, 1fr);
+  font-size: 20px;
+}
+
 .cell {
   display: flex;
-  background-color: #464646;
+  background-color: #d8d8d8;
   justify-content: center;
   font-weight: bold;
 }
 
 .cell-on {
-  background-color: #a3a3a3;
+  background-color: #d8d8d8;
 }
 
 .item {
@@ -29,7 +49,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 30px;
+
   font-weight: 700;
 }
 
