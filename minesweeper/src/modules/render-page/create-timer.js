@@ -9,11 +9,11 @@ async function createTimer() {
 
   const timer = document.createElement('div');
   timer.classList.add('time');
-  timer.innerText = '00:00';
+  timer.innerText = '000';
 
   const mine = document.createElement('div');
   mine.classList.add('sum-mine');
-  mine.innerText = '10';
+  mine.innerText = '15';
 
   score.append(timer, mine);
   BODY.append(hedder, score);

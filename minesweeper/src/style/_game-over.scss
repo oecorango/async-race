@@ -1,0 +1,21 @@
+.game-over {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  font-size: 25px;
+  font-weight: 700;
+  text-align: center;
+  align-items: center;
+  border: 2px solid;
+  border-radius: 20px;
+  height: 150px;
+  width: 200px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -103%);
+  background-color: rgb(190, 6, 6);
+  .button {
+    margin: 0px;
+    font-size: 20px;
+  }
+}

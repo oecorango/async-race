@@ -9,30 +9,30 @@
 .field-eazy {
   height: 490px;
   width: 490px;
-  grid-template-columns: repeat(9, 1fr);
-  grid-template-rows: repeat(9, 1fr);
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
   font-size: 30px;
 }
 
 .field-medium {
-  height: 490px;
-  width: 490px;
-  grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: repeat(12, 1fr);
+  height: 690px;
+  width: 690px;
+  grid-template-columns: repeat(15, 1fr);
+  grid-template-rows: repeat(15, 1fr);
   font-size: 25px;
 }
 
 .field-hard {
-  height: 490px;
-  width: 490px;
-  grid-template-columns: repeat(15, 1fr);
-  grid-template-rows: repeat(15, 1fr);
+  height: 1000px;
+  width: 1000px;
+  grid-template-columns: repeat(25, 1fr);
+  grid-template-rows: repeat(25, 1fr);
   font-size: 20px;
 }
 
 .cell {
   display: flex;
-  background-color: #d8d8d8;
+  background-color: #858585;
   justify-content: center;
   font-weight: bold;
 }
@@ -45,12 +45,19 @@
   display: none;
 }
 
+// .item-mine {
+//   background: url('assets/image/bomb.png');
+//   background-repeat: no-repeat;
+//   background-position: center;
+// }
+
 .item-on {
   display: flex;
   justify-content: center;
   align-items: center;
-
   font-weight: 700;
+  // height: 50px;
+  // width: 50px;
 }
 
 .item-1 {
@@ -79,8 +86,4 @@
 
 .item-7 {
   color: $color-7;
-}
-
-.item-8 {
-  color: $color-8;
 }

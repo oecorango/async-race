@@ -3,7 +3,7 @@ const BODY = document.querySelector('body');
 const settings = document.createElement('div');
 settings.classList.add('settings');
 
-async function createButton(name) {
+export async function createButton(name) {
   const button = document.createElement('button');
   button.classList.add('button');
   button.id = name;

@@ -1,14 +1,16 @@
 import './index.html';
 import './style.scss';
-import createField from './modules/render-page/createField';
-import createTimer from './modules/render-page/createTimer';
-import createSetings from './modules/render-page/createButtons';
+import createField from './modules/render-page/create-field';
+import createTimer from './modules/render-page/create-timer';
+import createSetings from './modules/render-page/create-buttons';
+import leftClick from './modules/left-handler';
 
-async function createHTML() {
+async function createHTML(width, heigth, mine) {
   await createTimer();
-  // await createField(9, 9, 15, 0.15);
-  // await createField(12, 12, 40, 0.3);
-  await createField(15, 15, 110, 0.5);
-  await createSetings();
+  await createField(width, heigth, mine);
+  // await createField(15, 15, 40);
+  // await createField(25, 25, 100);
+  createSetings();
+  await leftClick(width, heigth);
 }
-createHTML();
+createHTML(10, 10, 50);
