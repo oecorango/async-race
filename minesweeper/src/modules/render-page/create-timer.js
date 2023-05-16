@@ -2,6 +2,7 @@ const BODY = document.querySelector('body');
 
 async function createTimer() {
   const hedder = document.createElement('h1');
+  hedder.classList.add('header');
   hedder.innerText = 'Minesweeper';
 
   const score = document.createElement('div');

@@ -4,9 +4,11 @@
   background-color: #f5f5dc;
   border: solid 5px #f5f5dc;
   border-radius: 8px;
+  order: 1;
 }
 
 .field-eazy {
+  // display: grid;
   height: 490px;
   width: 490px;
   grid-template-columns: repeat(10, 1fr);
@@ -15,6 +17,7 @@
 }
 
 .field-medium {
+  // display: grid;
   height: 690px;
   width: 690px;
   grid-template-columns: repeat(15, 1fr);
@@ -23,6 +26,7 @@
 }
 
 .field-hard {
+  // display: grid;
   height: 1000px;
   width: 1000px;
   grid-template-columns: repeat(25, 1fr);

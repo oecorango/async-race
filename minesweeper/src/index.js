@@ -8,11 +8,13 @@ import rigthClick from './modules/right-handler';
 
 async function createHTML(width, heigth, mine) {
   await createTimer();
+  await createSetings();
   await createField(width, heigth, mine);
-  // await createField(15, 15, 40);
-  // await createField(25, 25, 100);
-  createSetings();
-  await leftClick(width, heigth);
+  await leftClick(width, heigth, mine);
   await rigthClick(width, heigth);
 }
-createHTML(10, 10, 10);
+
+// createHTML(10, 10, 10);
+createHTML(15, 15, 50);
+// createHTML(25, 25, 100);
+export default createHTML;

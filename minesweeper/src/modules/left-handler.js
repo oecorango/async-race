@@ -1,6 +1,10 @@
 import stopGame from './render-page/stop-Game';
+import deleteField from './render-page/delete-field';
+import createHTML from '..';
 
-async function leftClick(width, heigth) {
+
+
+async function leftClick(width, heigth, mine) {
   const FIELD = document.querySelector('.field');
   const MINES = document.querySelectorAll('.item-mine');
   const ITEM_CELL = document.querySelectorAll('.item');
@@ -39,15 +43,22 @@ async function leftClick(width, heigth) {
     return count;
   }
 
-  function openCell(row, column) {
-    if (!cellInField(row, column)) return;
+  let count = (heigth * width) - mine;
 
+  async function openCell(row, column) {
+    if (!cellInField(row, column)) return;
     const index = row * width + column;
     const cell = CELLS[index];
     const itemCell = items[index];
 
     if (cell.classList.contains('cell-on')
-    && itemCell.classList.contains('item-on')) return;
+        && itemCell.classList.contains('item-on')) return;
+
+    if (count === ((heigth * width) - mine)
+          && isMine(row, column)) {
+      await restartGame(width, heigth, mine);
+      return;
+    }
 
     cell.classList.add('cell-on');
     itemCell.classList.add('item-on');
@@ -72,6 +83,8 @@ async function leftClick(width, heigth) {
       return;
     }
 
+    count -= 1;
+
     const numberCell = getNumberCell(row, column);
 
     if (numberCell !== 0 && !isMine(row, column)) {
@@ -93,12 +106,20 @@ async function leftClick(width, heigth) {
     if (event.target.className !== 'cell') {
       return;
     }
+
     const index = CELLS.indexOf(event.target);
     const row = Math.floor(index / width);
     const column = index % width;
 
     openCell(row, column);
+    console.log(count);
   });
+}
+
+async function restartGame(width, heigth, mine) {
+  await deleteField();
+  await createHTML(width, heigth, mine);
+  // await leftClick(width, heigth, mine);
 }
 
 export default leftClick;
