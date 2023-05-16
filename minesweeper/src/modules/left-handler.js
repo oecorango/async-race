@@ -65,6 +65,7 @@ async function leftClick(width, heigth) {
           if (i === CELLS.length) {
             stopGame();
           }
+        // eslint-disable-next-line no-param-reassign
         }, 10 * (i += 1));
       });
 
@@ -74,6 +75,7 @@ async function leftClick(width, heigth) {
     const numberCell = getNumberCell(row, column);
 
     if (numberCell !== 0 && !isMine(row, column)) {
+      cell.classList.add(`item-${numberCell}`);
       cell.innerText = numberCell;
       return;
     }
