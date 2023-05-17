@@ -1,4 +1,4 @@
-.game-over {
+.game-win {
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -13,7 +13,7 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -103%);
-  background-color: rgb(190, 6, 6);
+  background-color: #06be15;
   .button {
     margin: 0px;
     font-size: 20px;

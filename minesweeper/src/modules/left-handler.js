@@ -1,5 +1,7 @@
-import stopGame from './render-page/stop-Game';
+import stopGame from './render-page/stop-game';
 import imgMine from '../assets/image/bomb2.png';
+import winGame from './render-page/win-game';
+import showTime from './render-page/showTime';
 
 async function leftClick(width, heigth, mine) {
   const FIELD = document.querySelector('.field');
@@ -81,8 +83,9 @@ async function leftClick(width, heigth, mine) {
 
     if (isMine(row, column)) {
       FIELD.childNodes.forEach((element, i) => {
-        element.classList.add('cell-on');
+        // element.classList.add('cell-on');
         element.classList.remove('cell-question');
+
         setTimeout(() => {
           if (element.firstChild.hasChildNodes()) {
             element.firstChild.classList.add('item-on');
@@ -98,6 +101,10 @@ async function leftClick(width, heigth, mine) {
     }
 
     count -= 1;
+    if (count === 0) {
+      winGame();
+      return;
+    }
 
     const numberCell = getNumberCell(row, column);
 
@@ -123,6 +130,11 @@ async function leftClick(width, heigth, mine) {
   FIELD.addEventListener('click', (event) => {
     if (event.target.className !== 'cell') {
       return;
+    }
+
+    const time = document.querySelector('.time');
+    if (time.textContent === '0') {
+      showTime();
     }
 
     const index = CELLS.indexOf(event.target);

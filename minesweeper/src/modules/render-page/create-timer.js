@@ -1,6 +1,6 @@
 const BODY = document.querySelector('body');
 
-async function createTimer() {
+async function createTimer(mine) {
   const hedder = document.createElement('h1');
   hedder.classList.add('header');
   hedder.innerText = 'Minesweeper';
@@ -10,13 +10,13 @@ async function createTimer() {
 
   const timer = document.createElement('div');
   timer.classList.add('time');
-  timer.innerText = '000';
+  timer.innerText = 0;
 
-  const mine = document.createElement('div');
-  mine.classList.add('sum-mine');
-  mine.innerText = '15';
+  const mines = document.createElement('div');
+  mines.classList.add('sum-mine');
+  mines.innerText = mine;
 
-  score.append(timer, mine);
+  score.append(timer, mines);
   BODY.append(hedder, score);
 }
 
