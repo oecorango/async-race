@@ -14,6 +14,6 @@ async function createHTML(width, heigth, mine) {
   await rigthClick(width, heigth);
 }
 
-createHTML(10, 10, 30);
+createHTML(10, 10, 10);
 // createHTML(15, 15, 50);
 // createHTML(25, 25, 100);

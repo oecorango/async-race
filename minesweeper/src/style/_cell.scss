@@ -1,0 +1,24 @@
+.cell {
+  display: flex;
+  background-color: #858585;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.cell-on {
+  background-color: #d8d8d8;
+}
+
+.cell-off {
+  background-color: #d8d8d8;
+  background-image: url(assets/image/flag.png);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.cell-question {
+  background-color: #d8d8d8;
+  background-image: url(assets/image/question.png);
+  background-repeat: no-repeat;
+  background-position: center;
+}

@@ -8,7 +8,6 @@
 }
 
 .field-eazy {
-  // display: grid;
   height: 490px;
   width: 490px;
   grid-template-columns: repeat(10, 1fr);
@@ -17,7 +16,6 @@
 }
 
 .field-medium {
-  // display: grid;
   height: 690px;
   width: 690px;
   grid-template-columns: repeat(15, 1fr);
@@ -26,75 +24,9 @@
 }
 
 .field-hard {
-  // display: grid;
   height: 1000px;
   width: 1000px;
   grid-template-columns: repeat(25, 1fr);
   grid-template-rows: repeat(25, 1fr);
   font-size: 20px;
-}
-
-.cell {
-  display: flex;
-  background-color: #858585;
-  justify-content: center;
-  font-weight: bold;
-}
-
-.cell-on {
-  background-color: #d8d8d8;
-}
-
-.cell-off {
-  background-color: #d8d8d8;
-  background-image: url(assets/image/flag.png);
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
-.item {
-  display: none;
-}
-
-// .item-mine {
-//   background: url('assets/image/bomb.png');
-//   background-repeat: no-repeat;
-//   background-position: center;
-// }
-
-.item-on {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: 700;
-  // height: 50px;
-  // width: 50px;
-}
-
-.item-1 {
-  color: $color-1;
-}
-
-.item-2 {
-  color: $color-2;
-}
-
-.item-3 {
-  color: $color-3;
-}
-
-.item-4 {
-  color: $color-4;
-}
-
-.item-5 {
-  color: $color-5;
-}
-
-.item-6 {
-  color: $color-6;
-}
-
-.item-7 {
-  color: $color-7;
 }

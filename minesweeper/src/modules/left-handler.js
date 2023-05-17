@@ -82,6 +82,7 @@ async function leftClick(width, heigth, mine) {
     if (isMine(row, column)) {
       FIELD.childNodes.forEach((element, i) => {
         element.classList.add('cell-on');
+        element.classList.remove('cell-question');
         setTimeout(() => {
           if (element.firstChild.hasChildNodes()) {
             element.firstChild.classList.add('item-on');
@@ -102,6 +103,8 @@ async function leftClick(width, heigth, mine) {
 
     if (numberCell !== 0 && !isMine(row, column)) {
       cell.classList.add(`item-${numberCell}`);
+      cell.classList.remove('cell-question');
+      cell.classList.remove('cell-off');
       cell.innerText = numberCell;
       return;
     }
@@ -109,6 +112,8 @@ async function leftClick(width, heigth, mine) {
     if (numberCell === 0) {
       for (let x = -1; x <= 1; x += 1) {
         for (let y = -1; y <= 1; y += 1) {
+          cell.classList.remove('cell-question');
+          cell.classList.remove('cell-off');
           openCell(row + y, column + x);
         }
       }
