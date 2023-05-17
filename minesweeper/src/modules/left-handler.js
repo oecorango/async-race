@@ -1,8 +1,5 @@
 import stopGame from './render-page/stop-Game';
-import deleteField from './render-page/delete-field';
-import createHTML from '..';
-
-
+import imgMine from '../assets/image/bomb2.png';
 
 async function leftClick(width, heigth, mine) {
   const FIELD = document.querySelector('.field');
@@ -51,28 +48,44 @@ async function leftClick(width, heigth, mine) {
     const cell = CELLS[index];
     const itemCell = items[index];
 
-    if (cell.classList.contains('cell-on')
-        && itemCell.classList.contains('item-on')) return;
+    if (cell.classList.contains('cell-on') && itemCell.classList.contains('item-on')) return;
 
-    if (count === ((heigth * width) - mine)
-          && isMine(row, column)) {
-      await restartGame(width, heigth, mine);
-      return;
+    if (count === ((heigth * width) - mine) && isMine(row, column)) {
+      cell.innerHTML = '<div class="item"></div>';
+
+      let newNumber = 0;
+      while (mines.includes(newNumber)) {
+        newNumber += 1;
+      }
+
+      mines.push(newNumber);
+      mines.splice(mines.indexOf(index), 1);
+
+      CELLS[newNumber].removeChild(items[newNumber]);
+      const newMine = document.createElement('div');
+      newMine.classList.add('item');
+      newMine.classList.add('item-mine');
+      const image = new Image();
+      image.src = imgMine;
+      newMine.append(image);
+      CELLS[newNumber].append(newMine);
+
+      items.splice(0);
+      document.querySelectorAll('.item').forEach((elem) => {
+        items.push(elem);
+      });
     }
 
     cell.classList.add('cell-on');
     itemCell.classList.add('item-on');
 
     if (isMine(row, column)) {
-      items.forEach((element, i) => {
-        FIELD.removeEventListener('click', FIELD.addEventListener);
-
-        if (!element.classList.contains('item-on')) {
-          element.parentNode.classList.add('cell-on');
-        }
-
+      FIELD.childNodes.forEach((element, i) => {
+        element.classList.add('cell-on');
         setTimeout(() => {
-          element.classList.add('item-on');
+          if (element.firstChild.hasChildNodes()) {
+            element.firstChild.classList.add('item-on');
+          }
           if (i === CELLS.length) {
             stopGame();
           }
@@ -112,14 +125,7 @@ async function leftClick(width, heigth, mine) {
     const column = index % width;
 
     openCell(row, column);
-    console.log(count);
   });
-}
-
-async function restartGame(width, heigth, mine) {
-  await deleteField();
-  await createHTML(width, heigth, mine);
-  // await leftClick(width, heigth, mine);
 }
 
 export default leftClick;

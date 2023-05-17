@@ -1,8 +1,3 @@
-async function createSetings(params) {
-  
-}
-
-
 const BODY = document.querySelector('body');
 
 const settings = document.createElement('div');
