@@ -3,7 +3,7 @@ import showTime from './render-page/show-time';
 async function rigthClick(width, mines) {
   const FIELD = document.querySelector('.field');
   const CELLS = [...FIELD.children];
-  const countMines = document.querySelector('.count-mines');
+  const countFlags = document.querySelector('.count-flags');
 
   function pointCell(row, column) {
     const index = row * width + column;
@@ -34,7 +34,7 @@ async function rigthClick(width, mines) {
     }
   }
 
-  let balanceMines = mines;
+  let balanceFlags = mines;
 
   FIELD.addEventListener('contextmenu', (event) => {
     event.preventDefault();
@@ -42,24 +42,28 @@ async function rigthClick(width, mines) {
     const row = Math.floor(index / width);
     const column = index % width;
     const isCell = event.target.classList.contains('cell');
-    if (isCell && !event.target.classList.contains('cell-off')
-    && !event.target.classList.contains('cell-question')) {
-      balanceMines -= 1;
-      countMines.textContent = balanceMines;
+    if (isCell) {
+      if (!event.target.classList.contains('cell-off')
+      && !event.target.classList.contains('cell-question')) {
+        if (balanceFlags > 0) {
+          balanceFlags -= 1;
+          countFlags.textContent = `Flags: ${balanceFlags}`;
 
-      pointCell(row, column);
+          pointCell(row, column);
 
-      const time = document.querySelector('.time');
-      if (time.textContent === '0') {
-        showTime();
+          const time = document.querySelector('.time');
+          if (time.textContent === 'Time of Game: 0s') {
+            showTime();
+          }
+        }
+      } else if (event.target.classList.contains('cell-off')) {
+        balanceFlags += 1;
+        countFlags.textContent = `Flags: ${balanceFlags}`;
+
+        pointCellQuestion(row, column);
+      } else {
+        removePointCell(row, column);
       }
-    } else if (isCell && event.target.classList.contains('cell-off')) {
-      balanceMines += 1;
-      countMines.textContent = balanceMines;
-
-      pointCellQuestion(row, column);
-    } else if (isCell) {
-      removePointCell(row, column);
     }
   });
 }

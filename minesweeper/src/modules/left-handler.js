@@ -1,12 +1,12 @@
-import stopGame from './render-page/stop-game';
 import imgMine from '../assets/image/bomb2.png';
-import winGame from './render-page/win-game';
 import showTime from './render-page/show-time';
 
 export let startGame = 'start';
 
 async function leftClick(width, heigth, mine) {
   startGame = 'start';
+  const win = document.querySelector('.game-win');
+  const stop = document.querySelector('.game-over');
   const FIELD = document.querySelector('.field');
   const MINES = document.querySelectorAll('.item-mine');
   const ITEM_CELL = document.querySelectorAll('.item');
@@ -104,7 +104,7 @@ async function leftClick(width, heigth, mine) {
           }
           if (i === CELLS.length) {
             startGame = 'end';
-            stopGame();
+            stop.classList.add('game-over_on');
           }
         // eslint-disable-next-line no-param-reassign
         }, 10 * (i += 1));
@@ -116,7 +116,7 @@ async function leftClick(width, heigth, mine) {
     count -= 1;
     if (count === 0) {
       startGame = 'end';
-      winGame();
+      win.classList.add('game-win_on');
       return;
     }
 

@@ -8,7 +8,7 @@ async function winGame() {
 
   const button = document.createElement('button');
   button.classList.add('button');
-  button.id = 'new-game';
+  button.id = 'win-game';
   button.innerText = 'Play again?';
 
   modalWindow.append(button);

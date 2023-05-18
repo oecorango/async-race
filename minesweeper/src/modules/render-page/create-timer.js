@@ -13,10 +13,14 @@ async function createTimer(mine) {
   timer.textContent = 'Time of Game: 0s';
 
   const mines = document.createElement('div');
-  mines.classList.add('count-mines');
-  mines.innerText = mine;
+  mines.classList.add('mines');
+  mines.innerText = `Mines: ${mine}`;
 
-  score.append(timer, mines);
+  const flags = document.createElement('div');
+  flags.classList.add('count-flags');
+  flags.innerText = `Flags: ${mine}`;
+
+  score.append(timer, mines, flags);
   BODY.append(hedder, score);
 }
 

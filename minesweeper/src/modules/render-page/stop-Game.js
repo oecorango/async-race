@@ -1,6 +1,6 @@
 const BODY = document.querySelector('body');
 
-async function stopGame() {
+async function createstopGame() {
   const modalWindow = document.createElement('div');
 
   modalWindow.classList.add('game-over');
@@ -12,9 +12,7 @@ async function stopGame() {
   button.innerText = 'Try again';
 
   modalWindow.append(button);
-  setTimeout(() => {
-    BODY.append(modalWindow);
-  }, 2000);
+  BODY.append(modalWindow);
 }
 
-export default stopGame;
+export default createstopGame;
