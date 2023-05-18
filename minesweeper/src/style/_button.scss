@@ -4,4 +4,13 @@
   margin: 30px 0;
   border: solid 1px #000;
   border-radius: 10px;
+  cursor: pointer;
+  transition: all .3s;
+  &:hover {
+    background-color: $color-1;
+  }
+}
+
+.button-on {
+  background-color: $color-1;
 }

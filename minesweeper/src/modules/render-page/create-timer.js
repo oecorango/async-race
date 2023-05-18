@@ -10,10 +10,10 @@ async function createTimer(mine) {
 
   const timer = document.createElement('div');
   timer.classList.add('time');
-  timer.innerText = 0;
+  timer.textContent = 'Time of Game: 0s';
 
   const mines = document.createElement('div');
-  mines.classList.add('sum-mine');
+  mines.classList.add('count-mines');
   mines.innerText = mine;
 
   score.append(timer, mines);

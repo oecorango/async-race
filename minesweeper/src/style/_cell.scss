@@ -10,15 +10,23 @@
 }
 
 .cell-off {
-  background-color: #d8d8d8;
+  background-color: #858585;
   background-image: url(assets/image/flag.png);
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .cell-question {
-  background-color: #d8d8d8;
+  background-color: #858585;
   background-image: url(assets/image/question.png);
   background-repeat: no-repeat;
   background-position: center;
+}
+
+.cell-true {
+  background-color: #00b600;
+}
+
+.cell-false {
+  background-color: #b62400;
 }

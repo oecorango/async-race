@@ -12,7 +12,9 @@ async function stopGame() {
   button.innerText = 'Try again';
 
   modalWindow.append(button);
-  BODY.append(modalWindow);
+  setTimeout(() => {
+    BODY.append(modalWindow);
+  }, 2000);
 }
 
 export default stopGame;

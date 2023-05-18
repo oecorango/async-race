@@ -1,6 +1,9 @@
-async function rigthClick(width) {
+import showTime from './render-page/show-time';
+
+async function rigthClick(width, mines) {
   const FIELD = document.querySelector('.field');
   const CELLS = [...FIELD.children];
+  const countMines = document.querySelector('.count-mines');
 
   function pointCell(row, column) {
     const index = row * width + column;
@@ -31,6 +34,8 @@ async function rigthClick(width) {
     }
   }
 
+  let balanceMines = mines;
+
   FIELD.addEventListener('contextmenu', (event) => {
     event.preventDefault();
     const index = CELLS.indexOf(event.target);
@@ -38,9 +43,20 @@ async function rigthClick(width) {
     const column = index % width;
     const isCell = event.target.classList.contains('cell');
     if (isCell && !event.target.classList.contains('cell-off')
-        && !event.target.classList.contains('cell-question')) {
+    && !event.target.classList.contains('cell-question')) {
+      balanceMines -= 1;
+      countMines.textContent = balanceMines;
+
       pointCell(row, column);
+
+      const time = document.querySelector('.time');
+      if (time.textContent === '0') {
+        showTime();
+      }
     } else if (isCell && event.target.classList.contains('cell-off')) {
+      balanceMines += 1;
+      countMines.textContent = balanceMines;
+
       pointCellQuestion(row, column);
     } else if (isCell) {
       removePointCell(row, column);

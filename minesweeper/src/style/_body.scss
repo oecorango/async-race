@@ -20,14 +20,15 @@ body {
 }
 
 .time,
-.sum-mine {
-  font-size: 30px;
+.count-mines {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 25px;
   margin-bottom: 20px;
 }
 
 .settings {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   width: 500px;
   order: 5;
 }
