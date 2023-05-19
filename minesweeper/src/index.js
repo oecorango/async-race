@@ -8,10 +8,9 @@ import rigthClick from './modules/right-handler';
 import removePage from './modules/render-page/remove-page';
 import createstopGame from './modules/render-page/stop-game';
 import winGame from './modules/render-page/win-game';
-
-const widthField = 10;
-const heigthField = 10;
-const mineField = 2;
+import {
+  widthField, heigthField, mineField, onChange,
+} from './modules/size-field';
 
 async function createHTML(width, heigth, mine) {
   await createTimer(mine);
@@ -39,7 +38,7 @@ async function createHTML(width, heigth, mine) {
     await removePage();
     await createHTML(widthField, heigthField, mineField);
   });
-  
+  await onChange();
 }
 
 createHTML(widthField, heigthField, mineField);
