@@ -1,23 +1,23 @@
 .field {
   display: grid;
-  grid-gap: 5px;
-  background-color: #f5f5dc;
-  border: solid 5px #f5f5dc;
-  border-radius: 8px;
+  grid-gap: 2px;
+  background-image: url(../src/assets/image/sandpiper.png);
+  background-size: cover;
   order: 1;
 }
 
 .field-eazy {
-  height: 490px;
-  width: 490px;
+  height: 400px;
+  width: 400px;
+  padding: 50px;
   grid-template-columns: repeat(10, 1fr);
   grid-template-rows: repeat(10, 1fr);
-  font-size: 30px;
+  font-size: 25px;
 }
 
 .field-medium {
-  height: 690px;
-  width: 690px;
+  height: 490px;
+  width: 490px;
   grid-template-columns: repeat(15, 1fr);
   grid-template-rows: repeat(15, 1fr);
   font-size: 25px;

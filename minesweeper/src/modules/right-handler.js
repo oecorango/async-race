@@ -1,4 +1,4 @@
-import showTime from './render-page/show-time';
+import { showTime } from './render-page/show-time';
 
 async function rigthClick(width, mines) {
   const FIELD = document.querySelector('.field');

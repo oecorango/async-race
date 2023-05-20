@@ -1,5 +1,5 @@
-import imgMine from '../assets/image/bomb2.png';
-import showTime from './render-page/show-time';
+import imgMine from '../assets/image/mine.png';
+import { showTime } from './render-page/show-time';
 
 export let startGame = 'start';
 

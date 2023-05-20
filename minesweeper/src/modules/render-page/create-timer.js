@@ -1,9 +1,18 @@
+import imageCat from '../../assets/image/cat.png';
+
 const BODY = document.querySelector('body');
 
 async function createTimer(mine) {
-  const hedder = document.createElement('h1');
-  hedder.classList.add('header');
-  hedder.innerText = 'Minesweeper';
+  const header = document.createElement('header');
+  header.classList.add('header');
+
+  const text = document.createElement('h1');
+  text.classList.add('header__text');
+  text.innerText = 'Minesweeper';
+
+  const image = new Image();
+  image.src = imageCat;
+  image.classList.add = 'cat';
 
   const score = document.createElement('div');
   score.classList.add('score');
@@ -20,8 +29,9 @@ async function createTimer(mine) {
   flags.classList.add('count-flags');
   flags.innerText = `Flags: ${mine}`;
 
+  header.append(text, image);
   score.append(timer, mines, flags);
-  BODY.append(hedder, score);
+  BODY.append(header, score);
 }
 
 export default createTimer;

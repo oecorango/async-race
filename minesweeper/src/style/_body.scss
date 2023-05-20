@@ -2,14 +2,15 @@ html {
   box-sizing: border-box;
 }
 
-body {
+.body {
   font-family: 'Georgia';
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: 0;
-  background-color: #d8d8d8;
+  background-image: url(assets/image/lawn.png);
+  background-size: cover;
 }
 
 .score {
@@ -25,11 +26,9 @@ body {
   font-family: 'Times New Roman', Times, serif;
   font-size: 25px;
   margin-bottom: 20px;
+  border: 1px solid $color-dark;
+  border-radius: 10px;
+  background-color: $color-ligth;
+  padding: 0 10px;
 }
 
-.settings {
-  display: flex;
-  justify-content: space-around;
-  width: 500px;
-  order: 5;
-}

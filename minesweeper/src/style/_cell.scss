@@ -1,32 +1,33 @@
 .cell {
   display: flex;
-  background-color: #858585;
+  border: 2px solid $color-gray;
   justify-content: center;
   font-weight: bold;
+  border-radius: 5px;
 }
 
 .cell-on {
-  background-color: #d8d8d8;
+  background-color: $color-ligth;
 }
 
 .cell-off {
-  background-color: #858585;
   background-image: url(assets/image/flag.png);
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .cell-question {
-  background-color: #858585;
   background-image: url(assets/image/question.png);
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .cell-true {
-  background-color: #00b600;
+  background-color: $color-2;
 }
 
 .cell-false {
-  background-color: #b62400;
+  background-color: $color-7;
 }

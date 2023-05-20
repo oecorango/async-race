@@ -1,9 +1,10 @@
 import initMinePosition from './init-mines';
-import imgMine from '../../assets/image/bomb2.png';
+import imgMine from '../../assets/image/mine.png';
 
 const BODY = document.querySelector('body');
 
 async function createField(width, heigth, mine) {
+  BODY.classList.add('body');
   const cells = width * heigth;
   const field = document.createElement('div');
   field.classList.add('field');
@@ -27,6 +28,7 @@ async function createField(width, heigth, mine) {
     if (indexMine.includes(i)) {
       const image = new Image();
       image.src = imgMine;
+      image.classList.add('header__image');
 
       item.classList.add('item-mine');
       item.append(image);

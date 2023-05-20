@@ -1,0 +1,11 @@
+.settings {
+  display: flex;
+  font-size: 18px;
+  justify-content: space-around;
+  align-items: center;
+  width: 500px;
+  order: 5;
+  .size {
+    background-color: $color-ligth;
+  }
+}

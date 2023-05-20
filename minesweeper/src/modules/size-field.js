@@ -3,6 +3,21 @@ let heigthField = 10;
 let mineField = 10;
 let selectField = 'eazy';
 
+async function resizeMines() {
+  const resizetMines = document.getElementById('resize-mines');
+  const resultMines = document.querySelector('.all-mines');
+
+  resizetMines.value = mineField;
+  resultMines.textContent = resizetMines.value;
+
+  function chageSize() {
+    mineField = this.value;
+    resultMines.textContent = this.value;
+  }
+
+  resizetMines.addEventListener('change', chageSize);
+}
+
 async function onChange() {
   const option = document.getElementById('size');
   option.children[0].removeAttribute('selected', '');
@@ -23,19 +38,16 @@ async function onChange() {
       selectField = 'eazy';
       widthField = 10;
       heigthField = 10;
-      mineField = 10;
     }
     if (this.value === 'medium') {
       selectField = 'medium';
       widthField = 15;
       heigthField = 15;
-      mineField = 15;
     }
     if (this.value === 'hard') {
       selectField = 'hard';
       widthField = 25;
       heigthField = 25;
-      mineField = 25;
     }
 
     option.value = selectField;
@@ -45,5 +57,5 @@ async function onChange() {
 }
 
 export {
-  widthField, heigthField, mineField, onChange,
+  widthField, heigthField, mineField, onChange, resizeMines,
 };

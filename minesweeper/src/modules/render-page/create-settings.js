@@ -1,4 +1,4 @@
-async function createSetings() {
+async function createSetings(mine) {
   const BODY = document.querySelector('body');
 
   const settings = document.createElement('div');
@@ -25,7 +25,18 @@ async function createSetings() {
   createOption('medium', 'Size: 15 x 15');
   createOption('hard', 'Size: 25 x 25');
 
-  settings.append(button, select);
+  const input = document.createElement('input');
+  input.id = 'resize-mines';
+  input.type = 'range';
+  input.value = mine;
+  input.setAttribute('min', '10');
+  input.setAttribute('max', '99');
+
+  const count = document.createElement('p');
+  count.classList.add('all-mines');
+  count.textContent = input.value;
+
+  settings.append(button, select, input, count);
   BODY.append(settings);
 }
 

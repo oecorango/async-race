@@ -9,12 +9,14 @@ import removePage from './modules/render-page/remove-page';
 import createstopGame from './modules/render-page/stop-game';
 import winGame from './modules/render-page/win-game';
 import {
-  widthField, heigthField, mineField, onChange,
+  widthField, heigthField, mineField, onChange, resizeMines,
 } from './modules/size-field';
 
-async function createHTML(width, heigth, mine) {
+import { resetTimer } from './modules/render-page/show-time';
+
+async function createHTML(width, heigth, mine, num) {
   await createTimer(mine);
-  await createSetings();
+  await createSetings(num);
   await createField(width, heigth, mine);
   await createstopGame();
   await winGame();
@@ -29,6 +31,7 @@ async function createHTML(width, heigth, mine) {
   newGameBtn.addEventListener('click', async () => {
     await removePage();
     await createHTML(widthField, heigthField, mineField);
+    resetTimer();
   });
   winGameBtn.addEventListener('click', async () => {
     await removePage();
@@ -39,6 +42,7 @@ async function createHTML(width, heigth, mine) {
     await createHTML(widthField, heigthField, mineField);
   });
   await onChange();
+  await resizeMines();
 }
 
 createHTML(widthField, heigthField, mineField);
