@@ -9,3 +9,12 @@
     background-color: $color-ligth;
   }
 }
+
+.all-mines {
+  background-color: $color-ligth;
+  border: 1px solid $color-dark;
+  text-align: center;
+  border-radius: 10px;
+  width: 30px;
+  font-weight: 700;
+}

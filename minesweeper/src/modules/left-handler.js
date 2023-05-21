@@ -54,7 +54,6 @@ async function leftClick(width, heigth, mine) {
 
   async function openCell(row, column) {
     clicks.textContent = `Clicks: ${countClicks}`;
-    console.log(countClicks);
 
     if (!cellInField(row, column)) return;
     const index = row * width + column;
