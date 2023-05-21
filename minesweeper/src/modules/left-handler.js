@@ -75,6 +75,7 @@ async function leftClick(width, heigth, mine) {
       newMine.classList.add('item-mine');
       const image = new Image();
       image.src = imgMine;
+      image.classList.add('item-mine__image');
       newMine.append(image);
       CELLS[newNumber].append(newMine);
 
