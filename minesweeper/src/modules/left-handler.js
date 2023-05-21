@@ -1,10 +1,13 @@
 import imgMine from '../assets/image/mine.png';
 import { showTime } from './render-page/show-time';
+import winImage from '../assets/image/win.png';
+import loseImage from '../assets/image/lose.png';
 
 export let startGame = 'start';
 
 async function leftClick(width, heigth, mine) {
   startGame = 'start';
+  const imgHeader = document.querySelector('.cat');
   const win = document.querySelector('.game-win');
   const stop = document.querySelector('.game-over');
   const FIELD = document.querySelector('.field');
@@ -103,6 +106,7 @@ async function leftClick(width, heigth, mine) {
             element.firstChild.classList.add('item-on');
           }
           if (i === CELLS.length) {
+            imgHeader.src = loseImage;
             startGame = 'end';
             stop.classList.add('game-over_on');
           }
@@ -115,6 +119,7 @@ async function leftClick(width, heigth, mine) {
 
     count -= 1;
     if (count === 0) {
+      imgHeader.src = winImage;
       startGame = 'end';
       win.classList.add('game-win_on');
       return;

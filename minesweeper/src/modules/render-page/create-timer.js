@@ -1,4 +1,4 @@
-import imageCat from '../../assets/image/cat.png';
+import imageCat from '../../assets/image/cat.gif';
 
 const BODY = document.querySelector('body');
 
@@ -11,8 +11,8 @@ async function createTimer(mine) {
   text.innerText = 'Minesweeper';
 
   const image = new Image();
+  image.classList = 'cat';
   image.src = imageCat;
-  image.classList.add = 'cat';
 
   const score = document.createElement('div');
   score.classList.add('score');

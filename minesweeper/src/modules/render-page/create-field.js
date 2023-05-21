@@ -28,7 +28,7 @@ async function createField(width, heigth, mine) {
     if (indexMine.includes(i)) {
       const image = new Image();
       image.src = imgMine;
-      image.classList.add('header__image');
+      image.classList.add('item-mine__image');
 
       item.classList.add('item-mine');
       item.append(image);
