@@ -3,6 +3,9 @@ import imageCat from '../../assets/image/cat.gif';
 const BODY = document.querySelector('body');
 
 async function createTimer(mine) {
+  const main = document.createElement('main');
+  main.classList.add('main');
+
   const header = document.createElement('header');
   header.classList.add('header');
 
@@ -31,7 +34,8 @@ async function createTimer(mine) {
 
   header.append(text, image);
   info.append(timer, mines, flags);
-  BODY.append(header, info);
+  main.append(info);
+  BODY.append(header, main);
 }
 
 export default createTimer;

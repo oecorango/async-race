@@ -1,5 +1,5 @@
 async function createSetings(mine) {
-  const BODY = document.querySelector('body');
+  const main = document.querySelector('main');
 
   const settings = document.createElement('div');
   settings.classList.add('settings');
@@ -37,7 +37,7 @@ async function createSetings(mine) {
   count.textContent = input.value;
 
   settings.append(button, select, input, count);
-  BODY.append(settings);
+  main.append(settings);
 }
 
 export default createSetings;

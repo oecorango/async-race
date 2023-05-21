@@ -5,6 +5,7 @@ const BODY = document.querySelector('body');
 
 async function createField(width, heigth, mine) {
   BODY.classList.add('body');
+  const main = document.querySelector('.main');
   const cells = width * heigth;
   const field = document.createElement('div');
   field.classList.add('field');
@@ -38,7 +39,7 @@ async function createField(width, heigth, mine) {
     field.append(cell);
   }
 
-  BODY.append(field);
+  main.append(field);
 }
 
 export default createField;

@@ -1,6 +1,5 @@
-const BODY = document.querySelector('body');
-
 async function winGame() {
+  const main = document.querySelector('.main');
   const modalWindow = document.createElement('div');
 
   modalWindow.classList.add('game-win');
@@ -12,7 +11,7 @@ async function winGame() {
   button.innerText = 'Play again?';
 
   modalWindow.append(button);
-  BODY.append(modalWindow);
+  main.append(modalWindow);
 }
 
 export default winGame;
