@@ -15,6 +15,7 @@ import {
 import { resetTimer } from './modules/render-page/show-time';
 
 async function createHTML(width, heigth, mine, num) {
+  await resetTimer();
   await createTimer(mine);
   await createSetings(num);
   await createField(width, heigth, mine);
@@ -31,7 +32,6 @@ async function createHTML(width, heigth, mine, num) {
   newGameBtn.addEventListener('click', async () => {
     await removePage();
     await createHTML(widthField, heigthField, mineField);
-    resetTimer();
   });
   winGameBtn.addEventListener('click', async () => {
     await removePage();
