@@ -13,6 +13,7 @@ async function leftClick(width, heigth, mine) {
   const FIELD = document.querySelector('.field');
   const MINES = document.querySelectorAll('.item-mine');
   const ITEM_CELL = document.querySelectorAll('.item');
+  const clicks = document.querySelector('.clicks');
   const CELLS = [...FIELD.children];
 
   const items = [];
@@ -49,8 +50,12 @@ async function leftClick(width, heigth, mine) {
   }
 
   let count = (heigth * width) - mine;
+  let countClicks = 0;
 
   async function openCell(row, column) {
+    clicks.textContent = `Clicks: ${countClicks}`;
+    console.log(countClicks);
+
     if (!cellInField(row, column)) return;
     const index = row * width + column;
     const cell = CELLS[index];
@@ -160,6 +165,9 @@ async function leftClick(width, heigth, mine) {
     const index = CELLS.indexOf(event.target);
     const row = Math.floor(index / width);
     const column = index % width;
+
+    countClicks += 1;
+    clicks.textContent = `Clicks: ${countClicks}`;
 
     openCell(row, column);
   });

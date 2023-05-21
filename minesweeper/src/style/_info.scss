@@ -1,0 +1,19 @@
+.info {
+  display: flex;
+  width: 500px;
+  justify-content: space-around;
+  order: 0;
+}
+
+.time,
+.mines,
+.count-flags,
+.clicks {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 25px;
+  margin-bottom: 20px;
+  border: 1px solid $color-dark;
+  border-radius: 10px;
+  background-color: $color-ligth;
+  padding: 0 10px;
+}

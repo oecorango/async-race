@@ -32,8 +32,12 @@ async function createTimer(mine) {
   flags.classList.add('count-flags');
   flags.innerText = `Flags: ${mine}`;
 
+  const clicks = document.createElement('div');
+  clicks.classList.add('clicks');
+  clicks.innerText = 'Clicks: 0';
+
   header.append(text, image);
-  info.append(timer, mines, flags);
+  info.append(timer, mines, flags, clicks);
   main.append(info);
   BODY.append(header, main);
 }
