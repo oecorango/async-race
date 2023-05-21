@@ -153,7 +153,7 @@ async function leftClick(width, heigth, mine) {
     }
 
     const time = document.querySelector('.time');
-    if (time.textContent === 'Time of Game: 0s') {
+    if (time.textContent === 'Time: 0s') {
       showTime();
     }
 

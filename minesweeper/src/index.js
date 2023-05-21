@@ -1,7 +1,7 @@
 import './index.html';
 import './style.scss';
 import createField from './modules/render-page/create-field';
-import createTimer from './modules/render-page/create-timer';
+import createTimer from './modules/render-page/create-info';
 import createSetings from './modules/render-page/create-settings';
 import leftClick from './modules/left-handler';
 import rigthClick from './modules/right-handler';

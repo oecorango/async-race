@@ -9,7 +9,7 @@ async function resetTimer() {
 async function showTime() {
   const time = document.querySelector('.time');
   timeOfGame += 1;
-  time.textContent = `Time of Game: ${timeOfGame}s`;
+  time.textContent = `Time: ${timeOfGame}s`;
   if (startGame === 'start') {
     setTimeout(() => {
       showTime();

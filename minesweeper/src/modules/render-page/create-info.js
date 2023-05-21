@@ -14,12 +14,12 @@ async function createTimer(mine) {
   image.classList = 'cat';
   image.src = imageCat;
 
-  const score = document.createElement('div');
-  score.classList.add('score');
+  const info = document.createElement('div');
+  info.classList.add('info');
 
   const timer = document.createElement('div');
   timer.classList.add('time');
-  timer.textContent = 'Time of Game: 0s';
+  timer.textContent = 'Time: 0s';
 
   const mines = document.createElement('div');
   mines.classList.add('mines');
@@ -30,8 +30,8 @@ async function createTimer(mine) {
   flags.innerText = `Flags: ${mine}`;
 
   header.append(text, image);
-  score.append(timer, mines, flags);
-  BODY.append(header, score);
+  info.append(timer, mines, flags);
+  BODY.append(header, info);
 }
 
 export default createTimer;
