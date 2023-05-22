@@ -20,4 +20,8 @@ async function showTime() {
   }
 }
 
-export { showTime, resetTimer };
+function getTime() {
+  return timeOfGame;
+}
+
+export { showTime, resetTimer, getTime };

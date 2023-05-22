@@ -1,14 +1,14 @@
 import imgMine from '../assets/image/mine.png';
-import { showTime } from './render-page/show-time';
+import { showTime, getTime } from './render-page/show-time';
 import winImage from '../assets/image/win.png';
 import loseImage from '../assets/image/lose.png';
+import winGame from './win-game';
 
 export let startGame = 'start';
 
 async function leftClick(width, heigth, mine) {
   startGame = 'start';
   const imgHeader = document.querySelector('.cat');
-  const win = document.querySelector('.game-win');
   const stop = document.querySelector('.game-over');
   const FIELD = document.querySelector('.field');
   const MINES = document.querySelectorAll('.item-mine');
@@ -126,7 +126,8 @@ async function leftClick(width, heigth, mine) {
     if (count === 0) {
       imgHeader.src = winImage;
       startGame = 'end';
-      win.classList.add('game-win_on');
+      // win.classList.add('game-win_on');
+      await winGame(getTime(), countClicks);
       return;
     }
 

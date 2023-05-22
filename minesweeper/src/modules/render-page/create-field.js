@@ -8,7 +8,12 @@ async function createField(width, heigth, mine) {
   const main = document.querySelector('.main');
   const cells = width * heigth;
   const field = document.createElement('div');
-  field.classList.add('field');
+  if (BODY.classList.contains('body_night')) {
+    field.classList.add('field');
+    field.classList.add('field_night');
+  } else {
+    field.classList.add('field');
+  }
   if (cells === 100) {
     field.classList.add('field-eazy');
   } if (cells === 225) {

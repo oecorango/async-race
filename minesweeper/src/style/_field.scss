@@ -1,9 +1,37 @@
 .field {
   display: grid;
   grid-gap: 2px;
-  background-image: url(../src/assets/image/sandpiper.png);
+  background-image: url(../src/assets/image/sun/sandpiper.png);
   background-size: cover;
   order: 1;
+  &.field-hard {
+    height: 660px;
+    width: 660px;
+    background-image: url(../src/assets/image/sun/sandpiper2.png);
+    grid-gap: 1px;
+    grid-template-columns: repeat(25, 1fr);
+    grid-template-rows: repeat(25, 1fr);
+    font-size: 14px;
+    @include media-tablet {
+      height: 500px;
+      width: 500px;
+      grid-gap: 1px;
+      padding: 1px; 
+      & > .cell {
+        border: 1px solid $color-gray;
+      }
+    }
+  }
+}
+
+.field_night {
+  background-image: url(../src/assets/image/night/sandpiper-night.png);
+  &.field-hard {
+    background-image: url(../src/assets/image/night/sandpiper-night2.png);
+          & > .cell {
+        border: 1px solid $color-dark;
+      }
+  }
 }
 
 .field-eazy {
@@ -33,24 +61,4 @@
     padding: 35px;
     font-size: 20px;
   }
-}
-
-.field-hard {
-  height: 660px;
-  width: 660px;
-  background-image: url(../src/assets/image/sandpiper2.png);
-  grid-gap: 1px;
-  grid-template-columns: repeat(25, 1fr);
-  grid-template-rows: repeat(25, 1fr);
-  font-size: 15px;
-  @include media-tablet {
-    height: 500px;
-    width: 500px;
-    grid-gap: 1px;
-    padding: 1px; 
-    & > .cell {
-      border: 1px solid $color-gray;
-    }
-  }
-
 }

@@ -3,12 +3,17 @@ html {
 }
 
 .body {
-  background-image: url(assets/image/lawn.png);
+  background-image: url(assets/image/sun/lawn.png);
+  // background-size: cover;
+}
+
+.body_night {
+  background-image: url(assets/image/night/lawn.gif);
   // background-size: cover;
 }
 
 .main {
-  font-family: 'Georgia';
+  font-family: 'Comic-sans';
   display: flex;
   flex-direction: column;
   justify-content: center;

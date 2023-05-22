@@ -1,4 +1,5 @@
-import imageCat from '../../assets/image/cat.gif';
+import sunCat from '../../assets/image/sun/cat.gif';
+import nightCat from '../../assets/image/night/cat1.gif';
 
 const BODY = document.querySelector('body');
 
@@ -11,11 +12,11 @@ async function createTimer(mine) {
 
   const text = document.createElement('h1');
   text.classList.add('header__text');
-  text.innerText = 'Minesweeper';
+  text.innerText = 'MinesWeeper';
 
-  const image = new Image();
-  image.classList = 'cat';
-  image.src = imageCat;
+  const imageCat = new Image();
+  imageCat.classList.add('cat');
+  imageCat.src = sunCat;
 
   const info = document.createElement('div');
   info.classList.add('info');
@@ -36,10 +37,15 @@ async function createTimer(mine) {
   clicks.classList.add('clicks');
   clicks.innerText = 'Clicks: 0';
 
-  header.append(text, image);
+  header.append(text, imageCat);
   info.append(timer, mines, flags, clicks);
   main.append(info);
   BODY.append(header, main);
+
+  if (BODY.classList.contains('body_night')) {
+    imageCat.src = nightCat;
+    text.classList.add('header__text_night');
+  }
 }
 
 export default createTimer;

@@ -1,13 +1,10 @@
 .settings {
   display: flex;
   font-size: 18px;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   width: 500px;
   order: 5;
-  .size {
-    background-color: $color-ligth;
-  }
 }
 
 .all-mines {
@@ -17,4 +14,16 @@
   border-radius: 10px;
   width: 30px;
   font-weight: 700;
+}
+
+.size {
+  background-color: $color-small-ligth;
+  width: 135px;
+  height: 25px;
+  margin: 30px 0;
+  text-align: center;
+  border: solid 1px $color-dark;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all .3s;
 }

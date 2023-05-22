@@ -5,11 +5,18 @@
   height: 120px;
   justify-content: space-between;
   align-items: center;
-  h1 {
-    font-size: 35px;
-  }
-  img {
-    margin: auto 0;
-    height: 90px;
-  }
+}
+
+.header__text {
+  font-family: 'Comic-sans';
+  font-size: 35px;
+}
+
+.header__text_night {
+  color: $color-ligth;
+}
+
+.cat {
+  margin: auto 0;
+  height: 90px;
 }

@@ -7,10 +7,11 @@ import leftClick from './modules/left-handler';
 import rigthClick from './modules/right-handler';
 import removePage from './modules/render-page/remove-page';
 import createstopGame from './modules/render-page/stop-game';
-import winGame from './modules/render-page/win-game';
+import createWinGame from './modules/render-page/create-win';
 import {
   widthField, heigthField, mineField, onChange, resizeMines,
 } from './modules/size-field';
+import changeTheme from './modules/night-theme';
 
 import { resetTimer } from './modules/render-page/show-time';
 
@@ -20,10 +21,11 @@ async function createHTML(width, heigth, mine, num) {
   await createSetings(num);
   await createField(width, heigth, mine);
   await createstopGame();
-  await winGame();
+  await createWinGame();
 
   await leftClick(width, heigth, mine);
   await rigthClick(width, mine);
+  await changeTheme();
 
   const newGameBtn = document.getElementById('new-game');
   const winGameBtn = document.getElementById('win-game');

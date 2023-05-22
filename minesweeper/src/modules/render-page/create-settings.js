@@ -32,11 +32,19 @@ async function createSetings(mine) {
   input.setAttribute('min', '10');
   input.setAttribute('max', '99');
 
+  const nightTheme = document.createElement('button');
+  nightTheme.classList.add('button');
+  nightTheme.classList.add('button__night-theme');
+
+  const sound = document.createElement('button');
+  sound.classList.add('button');
+  sound.classList.add('button__sound');
+
   const count = document.createElement('p');
   count.classList.add('all-mines');
   count.textContent = input.value;
 
-  settings.append(button, select, input, count);
+  settings.append(button, select, input, count, nightTheme, sound);
   main.append(settings);
 }
 
