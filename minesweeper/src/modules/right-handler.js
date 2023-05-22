@@ -1,9 +1,16 @@
 import { showTime } from './render-page/show-time';
+import { isOnSound } from './sound-on';
 
 async function rigthClick(width, mines) {
   const FIELD = document.querySelector('.field');
   const CELLS = [...FIELD.children];
   const countFlags = document.querySelector('.count-flags');
+
+  const audio = new Audio();
+  async function playAudio() {
+    audio.src = './assets/flag.mp3';
+    audio.play();
+  }
 
   function pointCell(row, column) {
     const index = row * width + column;
@@ -42,13 +49,16 @@ async function rigthClick(width, mines) {
     const row = Math.floor(index / width);
     const column = index % width;
     const isCell = event.target.classList.contains('cell');
+
     if (isCell) {
       if (!event.target.classList.contains('cell-off')
       && !event.target.classList.contains('cell-question')) {
         if (balanceFlags > 0) {
           balanceFlags -= 1;
           countFlags.textContent = `Flags: ${balanceFlags}`;
-
+          if (isOnSound()) {
+            playAudio();
+          }
           pointCell(row, column);
 
           const time = document.querySelector('.time');

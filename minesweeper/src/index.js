@@ -12,7 +12,7 @@ import {
   widthField, heigthField, mineField, onChange, resizeMines,
 } from './modules/size-field';
 import changeTheme from './modules/night-theme';
-
+import playSound from './modules/sound-on';
 import { resetTimer } from './modules/render-page/show-time';
 
 async function createHTML(width, heigth, mine, num) {
@@ -26,6 +26,7 @@ async function createHTML(width, heigth, mine, num) {
   await leftClick(width, heigth, mine);
   await rigthClick(width, mine);
   await changeTheme();
+  await playSound();
 
   const newGameBtn = document.getElementById('new-game');
   const winGameBtn = document.getElementById('win-game');

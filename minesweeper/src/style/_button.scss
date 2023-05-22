@@ -27,7 +27,7 @@
 }
 
 .button__sound {
-  background-image: url(assets/image/sound-off.png);
+  background-image: url(assets/image/sound-on.png);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -36,6 +36,6 @@
   border-radius: 25px;
 }
 
-.button__sound_on {
-  background-image: url(assets/image/sound-on.png);
+.button__sound_off {
+  background-image: url(assets/image/sound-off.png);
 }

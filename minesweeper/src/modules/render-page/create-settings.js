@@ -1,3 +1,5 @@
+import { isOnSound } from '../sound-on';
+
 async function createSetings(mine) {
   const main = document.querySelector('main');
 
@@ -39,6 +41,9 @@ async function createSetings(mine) {
   const sound = document.createElement('button');
   sound.classList.add('button');
   sound.classList.add('button__sound');
+  if (!isOnSound()) {
+    sound.classList.add('button__sound_off');
+  }
 
   const count = document.createElement('p');
   count.classList.add('all-mines');

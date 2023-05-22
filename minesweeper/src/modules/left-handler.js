@@ -3,6 +3,7 @@ import { showTime, getTime } from './render-page/show-time';
 import winImage from '../assets/image/win.png';
 import loseImage from '../assets/image/lose.png';
 import winGame from './win-game';
+import { isOnSound } from './sound-on';
 
 export let startGame = 'start';
 
@@ -15,6 +16,18 @@ async function leftClick(width, heigth, mine) {
   const ITEM_CELL = document.querySelectorAll('.item');
   const clicks = document.querySelector('.clicks');
   const CELLS = [...FIELD.children];
+
+  const audio = new Audio();
+  async function playAudio() {
+    audio.src = './assets/click.mp3';
+    audio.play();
+  }
+
+  const audioLose = new Audio();
+  async function playAudioLose() {
+    audioLose.src = './assets/lose.mp3';
+    audioLose.play();
+  }
 
   const items = [];
   ITEM_CELL.forEach((elem) => {
@@ -94,6 +107,9 @@ async function leftClick(width, heigth, mine) {
 
     if (isMine(row, column)) {
       startGame = 'stop';
+      if (isOnSound()) {
+        playAudioLose();
+      }
       FIELD.childNodes.forEach((element, i) => {
         if (element.classList.contains('cell-off')
         && element.firstChild.classList.contains('item-mine')) {
@@ -116,7 +132,7 @@ async function leftClick(width, heigth, mine) {
             stop.classList.add('game-over_on');
           }
         // eslint-disable-next-line no-param-reassign
-        }, 10 * (i += 1));
+        }, 5 * (i += 1));
       });
 
       return;
@@ -168,6 +184,10 @@ async function leftClick(width, heigth, mine) {
 
     countClicks += 1;
     clicks.textContent = `Clicks: ${countClicks}`;
+
+    if (isOnSound() && !isMine(row, column)) {
+      playAudio();
+    }
 
     openCell(row, column);
   });
