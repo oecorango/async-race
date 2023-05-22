@@ -9,10 +9,12 @@ async function changeTheme() {
     const field = document.querySelector('.field');
     const imgCat = document.querySelector('.cat');
     const header = document.querySelector('.header__text');
+    const btn = document.querySelector('.button__night-theme');
 
     body.classList.toggle('body_night');
     field.classList.toggle('field_night');
     header.classList.toggle('header__text_night');
+    btn.classList.toggle('button__night-theme_on');
 
     if (imgCat.src === sunCat) {
       imgCat.src = nightCat;

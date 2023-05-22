@@ -11,12 +11,31 @@
   }
 }
 
-.button-on {
-  background-color: $color-gray;
-}
-
-.button__night-theme,
-.button__sound {
+.button__night-theme {
+  background-image: url(assets/image/night/moon.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
   height: 40px;
   width: 40px;
+  border-radius: 25px;
+}
+
+
+.button__night-theme_on {
+ background-image: url(assets/image/sun/sun.png);
+}
+
+.button__sound {
+  background-image: url(assets/image/sound-off.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 40px;
+  width: 40px;
+  border-radius: 25px;
+}
+
+.button__sound_on {
+  background-image: url(assets/image/sound-on.png);
 }
