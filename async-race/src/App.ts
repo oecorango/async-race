@@ -1,4 +1,4 @@
 import './app.scss';
-import { createPage } from './view/veiw';
+import { createPage } from './view/view';
 
 createPage();
