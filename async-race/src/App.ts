@@ -1,4 +1,4 @@
 import './app.scss';
+import { createPage } from './view/veiw';
 
-const app = (): void => console.log('Hello!');
-app();
+createPage();
