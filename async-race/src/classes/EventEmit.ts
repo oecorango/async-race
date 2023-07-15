@@ -1,7 +1,7 @@
 import { onOffButton } from '../components/on-off-buttons';
 
 export class EventEmitter {
-  public static clickSectionBtn(btn: HTMLButtonElement): void {
+  public static clickGeneralBtn(btn: HTMLButtonElement): void {
     btn.addEventListener('click', () => {
       const section = document.querySelectorAll('section');
       section.forEach((e) => e.classList.toggle('hidden'));

@@ -1,0 +1,8 @@
+.create_car, 
+.edit_car {
+  display: flex;
+  align-items: center;
+  & button {
+    width: 100px;
+  }
+}
