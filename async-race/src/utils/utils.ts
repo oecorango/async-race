@@ -20,7 +20,6 @@ export function createButton(parent: string, nameButton: string, idName?: string
   parentElement?.append(button);
 
   if (parent === 'body') EventEmitter.clickGeneralBtn(button);
-  // if (parent === '.set_car') EventEmitter.clickGeneralBtn(button);
 }
 
 export function createInput(parent: string, type: string, disabled?: string): void {
