@@ -6,3 +6,33 @@
     width: 100px;
   }
 }
+
+.car {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 2px dashed;
+  margin-bottom: 5px;
+  align-items: flex-start;
+  justify-content: center;
+  & img {
+    height: 50px;
+    width: 50px;
+  }
+  & button {
+    height: 22px;
+  }
+  & h3 {
+    display: inline-block;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  & .track {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+.finish {
+  padding-right: 50px;
+}
