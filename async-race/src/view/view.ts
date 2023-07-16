@@ -4,8 +4,8 @@ import { createCars } from '../utils/create-cars';
 import { createButton, createElement, createInput } from '../utils/utils';
 
 function createGeneralButtons(): void {
-  createButton('body', 'to garage', 'garage', 'disabled');
-  createButton('body', 'to winners', 'winners');
+  createButton('body', 'TO GARAGE', 'garage', 'disabled');
+  createButton('body', 'TO WINNERS', 'winners');
 }
 
 function createPageSections(): void {

@@ -16,3 +16,12 @@
 .winners {
   background-color: $color-yellow;
 }
+
+.pagination_button {
+  background-color: $color-dark;
+  padding-top: 10px;
+  & button {
+    width: 150px;
+    margin-right: 20px;
+  }
+}
