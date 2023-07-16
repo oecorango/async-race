@@ -1,4 +1,4 @@
-import { createCar, getCar } from './api/api';
+import { createCar, getCars } from './api/api';
 import './app.scss';
 import { createPage } from './view/view';
 

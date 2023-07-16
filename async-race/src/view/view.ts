@@ -1,4 +1,7 @@
-import { createButton, createCar, createElement, createInput } from '../utils/utils';
+import { getCars } from '../api/api';
+import { START_PAGE_GARAGE } from '../utils/constants';
+import { createCars } from '../utils/create-cars';
+import { createButton, createElement, createInput } from '../utils/utils';
 
 function createGeneralButtons(): void {
   createButton('body', 'to garage', 'garage', 'disabled');
@@ -10,7 +13,7 @@ function createPageSections(): void {
   createElement('body', 'section', ['winners', 'hidden']);
 }
 
-function createCarButtons(): void {
+function createCarNewCar(): void {
   createElement('.garage', 'div', ['create_car']);
 
   createInput('.create_car', 'text');
@@ -26,24 +29,40 @@ function editCar(): void {
   createButton('.edit_car', 'Edit car', 'edit-car', 'disabled');
 }
 
-function currentCarInGarage(): void {
-  const countCarInGarage = 5; // написать функуцию получаения машин
-  const countGaragePage = 1; // написать функуцию получаения страниц
+function createRaceButton(): void {
+  createElement('.garage', 'div', ['race']);
+
+  createButton('.race', 'RACE', 'race');
+  createButton('.race', 'RESET', 'reset');
+  createButton('.race', 'GENERATE CARS', 'generate');
+}
+
+async function currentCarInGarage(): Promise<void> {
+  const carsInGarage = await getCars();
+
+  const countCarInGarage = carsInGarage.length;
+  const countGaragePage = START_PAGE_GARAGE;
 
   createElement('.garage', 'h2', ['current_car'], `Garage (${countCarInGarage})`);
   createElement('.garage', 'h2', ['current_garage-page'], `Page #${countGaragePage}`);
 }
 
-function createGarageCars(): void {
-  createCar();
+function createPagination(): void {
+  createElement('.garage', 'div', ['pagination_button']);
+
+  createButton('.pagination_button', 'PREV', 'prev');
+  createButton('.pagination_button', 'NEXT', 'next');
 }
 
-export function createPage(): void {
+export async function createPage(): Promise<void> {
   createGeneralButtons();
   createPageSections();
-  createCarButtons();
+  createCarNewCar();
   editCar();
+  createRaceButton();
 
-  currentCarInGarage();
-  createGarageCars();
+  await currentCarInGarage();
+  await createCars();
+
+  createPagination();
 }
