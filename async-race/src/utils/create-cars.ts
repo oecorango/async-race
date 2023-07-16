@@ -5,7 +5,8 @@ import carImage from '../assets/car.gif';
 import finishImage from '../assets/finish.png';
 
 export async function createCars(): Promise<void> {
-  createElement('.garage', 'div', ['garage_cars']);
+  const garageCars = document.querySelector('.garage_cars');
+  if (!garageCars) createElement('.garage', 'div', ['garage_cars']);
 
   const carsInGarage = await getCars();
 
