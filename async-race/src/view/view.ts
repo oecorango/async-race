@@ -50,7 +50,7 @@ async function currentCarInGarage(): Promise<void> {
 function createPagination(): void {
   createElement('.garage', 'div', ['pagination_button']);
 
-  createButton('.pagination_button', 'PREV', 'prev');
+  createButton('.pagination_button', 'PREV', 'prev', 'disabled');
   createButton('.pagination_button', 'NEXT', 'next');
 }
 

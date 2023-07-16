@@ -9,6 +9,7 @@ export async function createCars(): Promise<void> {
 
   const carsInGarage = await getCars();
 
+  // подумать как сделать это не магичиским ;)
   const currentPage = currentPageGarage();
   const startIndexCar = (currentPage - 1) * 7;
   const endIndexCar = startIndexCar + 7;

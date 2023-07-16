@@ -17,6 +17,7 @@ export function createButton(parent: string, nameButton: string, idName?: string
   parentElement?.append(button);
 
   if (parent === 'body') EventEmitter.clickGeneralBtn(button);
+  if (idName === 'next' || idName === 'prev') EventEmitter.clickPrevNextBtn(button);
 }
 
 export function createInput(parent: string, type: string, disabled?: string): void {
