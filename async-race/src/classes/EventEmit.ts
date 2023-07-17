@@ -1,15 +1,16 @@
-import { createCar, getCars, removeCar } from '../api/api';
-import { currentPageGarage } from '../components/current-page-garage';
-import { onOffButton } from '../components/on-off-buttons';
-import { removeCars } from '../components/remove-cars';
+import { getCarsAPI, removeCarAPI } from '../api/api';
+import { createCarParams } from '../api/create-car-on-server';
+// eslint-disable-next-line import/no-cycle
 import { createCars } from '../utils/create-cars';
-
-const main = async (): Promise<void> => {
-  const creat = await createCar({
-    name: 'Moskvich',
-    color: '#555555',
-  });
-};
+import {
+  createOneCar,
+  currentPageGarage,
+  increaseNumberCarsInGarage,
+  onOffButton,
+  reduceNumberCarsInGarage,
+  removeAllCars,
+  removeOneCar,
+} from '../utils/utils';
 
 export class EventEmitter {
   public static clickGeneralBtn(btn: HTMLButtonElement): void {
@@ -26,20 +27,27 @@ export class EventEmitter {
 
   public static clickAddCarBtn(btn: HTMLButtonElement): void {
     btn.addEventListener('click', async () => {
-      await main();
+      await createCarParams().then((car) => createOneCar(car));
+      increaseNumberCarsInGarage();
     });
   }
 
   public static clickRemoveCarBtn(btn: HTMLButtonElement): void {
     btn.addEventListener('click', async () => {
-      // await removeCar();
+      const idCar = btn.parentElement;
+      if (idCar) {
+        const id = idCar.classList[1].split('-')[1];
+        removeCarAPI(+id);
+        removeOneCar(+id);
+        reduceNumberCarsInGarage();
+      }
     });
   }
 
   public static clickPrevNextBtn(btn: HTMLButtonElement): void {
     btn.addEventListener('click', async () => {
       const currentPage = currentPageGarage();
-      const allPages = Math.round((await getCars()).length / 7);
+      const allPages = Math.ceil((await getCarsAPI()).length / 7);
 
       let nextPrevPage = currentPage;
       if (btn.id === 'prev' && nextPrevPage > 1) {
@@ -55,22 +63,22 @@ export class EventEmitter {
 
         const numberPage: HTMLElement | null = document.querySelector('.current_garage-page');
         if (numberPage) numberPage.innerText = `Page #${nextPrevPage}`;
-        removeCars();
+        removeAllCars();
         await createCars();
       }
       if (btn.id === 'next' && nextPrevPage <= allPages) {
         const prevBtn = <HTMLButtonElement>document.getElementById('prev');
         prevBtn.disabled = false;
+        nextPrevPage += 1;
 
         if (nextPrevPage === allPages) {
           const nextBtn = <HTMLButtonElement>document.getElementById('next');
           nextBtn.disabled = true;
         }
 
-        nextPrevPage += 1;
         const numberPage: HTMLElement | null = document.querySelector('.current_garage-page');
         if (numberPage) numberPage.innerText = `Page #${nextPrevPage}`;
-        removeCars();
+        removeAllCars();
         await createCars();
       }
     });

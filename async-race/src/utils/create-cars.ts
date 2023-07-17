@@ -1,6 +1,6 @@
-import { getCars } from '../api/api';
-import { createButton, createElement, createImage } from './utils';
-import { currentPageGarage } from '../components/current-page-garage';
+import { getCarsAPI } from '../api/api';
+// eslint-disable-next-line import/no-cycle
+import { createButton, createElement, createImage, currentPageGarage } from './utils';
 import carImage from '../assets/car.gif';
 import finishImage from '../assets/finish.png';
 
@@ -8,7 +8,7 @@ export async function createCars(): Promise<void> {
   const garageCars = document.querySelector('.garage_cars');
   if (!garageCars) createElement('.garage', 'div', ['garage_cars']);
 
-  const carsInGarage = await getCars();
+  const carsInGarage = await getCarsAPI();
 
   // подумать как сделать это не магичиским ;)
   const currentPage = currentPageGarage();

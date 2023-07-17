@@ -1,30 +1,25 @@
 import { Car } from '../types/type';
 import { PATH_MAP, URL } from '../utils/constants';
 
-// type Arr = Car[];
-
-// export const generateQueryString = (queryParams: Arr = []) =>
-//   queryParams.length ? `${queryParams.map((x) => `${x.color}=${x.name}`).join('&')}` : '';
-
-export const getCars = async (): Promise<Car[]> => {
+export const getCarsAPI = async (): Promise<Car[]> => {
   const response = await fetch(`${URL}${PATH_MAP.garage}`);
   const data: Car[] = await response.json();
   return data;
 };
 
-export const createCar = async (body: Car): Promise<Car> => {
+export const createCarAPI = async (param: Car): Promise<Car> => {
   const response = await fetch(`${URL}${PATH_MAP.garage}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(body),
+    body: JSON.stringify(param),
   });
   const data: Car = await response.json();
   return data;
 };
 
-export const removeCar = async (id: number): Promise<Car> => {
+export const removeCarAPI = async (id: number): Promise<Car> => {
   const response = await fetch(`${URL}${PATH_MAP.garage}/${id}`, {
     method: 'DELETE',
   });

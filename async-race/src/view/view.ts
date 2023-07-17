@@ -1,5 +1,5 @@
-import { getCars } from '../api/api';
-import { START_PAGE_GARAGE } from '../utils/constants';
+import { getCarsAPI } from '../api/api';
+import { CARS_ON_PAGE, START_PAGE_GARAGE } from '../utils/constants';
 import { createCars } from '../utils/create-cars';
 import { createButton, createElement, createInput } from '../utils/utils';
 
@@ -16,16 +16,16 @@ function createPageSections(): void {
 function createCarNewCar(): void {
   createElement('.garage', 'div', ['create_car']);
 
-  createInput('.create_car', 'text');
-  createInput('.create_car', 'color');
+  createInput('.create_car', 'text', 'name-car-to-create');
+  createInput('.create_car', 'color', 'color-car-to-create');
   createButton('.create_car', 'Create car', 'create-car');
 }
 
 function editCar(): void {
   createElement('.garage', 'div', ['edit_car']);
 
-  createInput('.edit_car', 'text', 'disabled');
-  createInput('.edit_car', 'color', 'disabled');
+  createInput('.edit_car', 'text', 'name-car-to-edit', 'disabled');
+  createInput('.edit_car', 'color', 'color-car-to-edit', 'disabled');
   createButton('.edit_car', 'Edit car', 'edit-car', 'disabled');
 }
 
@@ -38,20 +38,27 @@ function createRaceButton(): void {
 }
 
 async function currentCarInGarage(): Promise<void> {
-  const carsInGarage = await getCars();
+  const carsInGarage = await getCarsAPI();
 
   const countCarInGarage = carsInGarage.length;
   const countGaragePage = START_PAGE_GARAGE;
 
-  createElement('.garage', 'h2', ['current_car'], `Garage (${countCarInGarage})`);
+  createElement('.garage', 'h2', ['cars_in-garage'], `Cars in garage #${countCarInGarage}`);
   createElement('.garage', 'h2', ['current_garage-page'], `Page #${countGaragePage}`);
 }
 
-function createPagination(): void {
+async function createPagination(): Promise<void> {
+  const carsInGarage = await getCarsAPI();
+  const countCarInGarage = carsInGarage.length;
+
   createElement('.garage', 'div', ['pagination_button']);
 
   createButton('.pagination_button', 'PREV', 'prev', 'disabled');
-  createButton('.pagination_button', 'NEXT', 'next');
+  if (countCarInGarage > CARS_ON_PAGE) {
+    createButton('.pagination_button', 'NEXT', 'next');
+  } else {
+    createButton('.pagination_button', 'NEXT', 'next', 'disabled');
+  }
 }
 
 export async function createPage(): Promise<void> {
@@ -64,5 +71,5 @@ export async function createPage(): Promise<void> {
   await currentCarInGarage();
   await createCars();
 
-  createPagination();
+  await createPagination();
 }
