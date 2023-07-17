@@ -88,6 +88,8 @@ export function increaseNumberCarsInGarage(): void {
   }
 }
 
+/* это функция тоже пока заглушка, думаю как в файл
+    create-cars.ts типизировать передачу либо одной машины, либо массива */
 export async function createOneCar(car: Car | null): Promise<void> {
   const currentCarsOnPage = document.querySelectorAll('.car').length;
   if (currentCarsOnPage < CARS_ON_PAGE) {

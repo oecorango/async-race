@@ -69,7 +69,9 @@ export async function createPage(): Promise<void> {
   createRaceButton();
 
   await currentCarInGarage();
-  await createCars();
+  await getCarsAPI().then((arr) => {
+    createCars(arr);
+  });
 
   await createPagination();
 }

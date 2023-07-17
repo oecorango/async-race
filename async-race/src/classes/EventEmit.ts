@@ -1,5 +1,5 @@
 import { getCarsAPI, removeCarAPI } from '../api/api';
-import { createCarParams } from '../api/create-car-on-server';
+import { createCarParams } from '../api/create-one-car';
 // eslint-disable-next-line import/no-cycle
 import { createCars } from '../utils/create-cars';
 import {
@@ -44,42 +44,42 @@ export class EventEmitter {
     });
   }
 
+  // этот метод буду переделывать, пока просто оформил
+  // для понимания как работает программа
   public static clickPrevNextBtn(btn: HTMLButtonElement): void {
     btn.addEventListener('click', async () => {
       const currentPage = currentPageGarage();
       const allPages = Math.ceil((await getCarsAPI()).length / 7);
-
       let nextPrevPage = currentPage;
       if (btn.id === 'prev' && nextPrevPage > 1) {
         nextPrevPage -= 1;
-
         const nextBtn = <HTMLButtonElement>document.getElementById('next');
         nextBtn.disabled = false;
-
         if (nextPrevPage === 1) {
           const prevBtn = <HTMLButtonElement>document.getElementById('prev');
           prevBtn.disabled = true;
         }
-
         const numberPage: HTMLElement | null = document.querySelector('.current_garage-page');
         if (numberPage) numberPage.innerText = `Page #${nextPrevPage}`;
         removeAllCars();
-        await createCars();
+        await getCarsAPI().then((arr) => {
+          createCars(arr);
+        });
       }
       if (btn.id === 'next' && nextPrevPage <= allPages) {
         const prevBtn = <HTMLButtonElement>document.getElementById('prev');
         prevBtn.disabled = false;
         nextPrevPage += 1;
-
         if (nextPrevPage === allPages) {
           const nextBtn = <HTMLButtonElement>document.getElementById('next');
           nextBtn.disabled = true;
         }
-
         const numberPage: HTMLElement | null = document.querySelector('.current_garage-page');
         if (numberPage) numberPage.innerText = `Page #${nextPrevPage}`;
         removeAllCars();
-        await createCars();
+        await getCarsAPI().then((arr) => {
+          createCars(arr);
+        });
       }
     });
   }
