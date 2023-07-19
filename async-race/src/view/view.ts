@@ -4,8 +4,8 @@ import { createCars } from '../utils/create-cars';
 import { createButton, createElement, createInput } from '../utils/utils';
 
 function createGeneralButtons(): void {
-  createButton('body', 'TO GARAGE', 'garage', 'disabled');
-  createButton('body', 'TO WINNERS', 'winners');
+  createButton('body', 'TO GARAGE', { name: 'general', id: '' }, 'disabled');
+  createButton('body', 'TO WINNERS', { name: 'general', id: '' });
 }
 
 function createPageSections(): void {
@@ -18,7 +18,7 @@ function createCarNewCar(): void {
 
   createInput('.create_car', 'text', 'name-car-to-create');
   createInput('.create_car', 'color', 'color-car-to-create');
-  createButton('.create_car', 'Create car', 'create-car');
+  createButton('.create_car', 'Create car', { name: 'create', id: '' });
 }
 
 function editCar(): void {
@@ -26,15 +26,15 @@ function editCar(): void {
 
   createInput('.edit_car', 'text', 'name-car-to-edit', 'disabled');
   createInput('.edit_car', 'color', 'color-car-to-edit', 'disabled');
-  createButton('.edit_car', 'Edit car', 'edit-car', 'disabled');
+  createButton('.edit_car', 'Edit car', { name: 'edit-car', id: '' }, 'disabled');
 }
 
 function createRaceButton(): void {
   createElement('.garage', 'div', ['race']);
 
-  createButton('.race', 'RACE', 'race');
-  createButton('.race', 'RESET', 'reset');
-  createButton('.race', 'GENERATE CARS', 'generate');
+  createButton('.race', 'RACE', { name: 'race', id: '' });
+  createButton('.race', 'RESET', { name: 'reset', id: '' });
+  createButton('.race', 'GENERATE CARS', { name: 'generate', id: '' });
 }
 
 async function currentCarInGarage(): Promise<void> {
@@ -53,11 +53,11 @@ async function createPagination(): Promise<void> {
 
   createElement('.garage', 'div', ['pagination_button']);
 
-  createButton('.pagination_button', 'PREV', 'prev', 'disabled');
+  createButton('.pagination_button', 'PREV', { name: 'pagination', id: 'prev' }, 'disabled');
   if (countCarInGarage > CARS_ON_PAGE) {
-    createButton('.pagination_button', 'NEXT', 'next');
+    createButton('.pagination_button', 'NEXT', { name: 'pagination', id: 'next' });
   } else {
-    createButton('.pagination_button', 'NEXT', 'next', 'disabled');
+    createButton('.pagination_button', 'NEXT', { name: 'pagination', id: 'next' }, 'disabled');
   }
 }
 
@@ -70,8 +70,7 @@ export async function createPage(): Promise<void> {
 
   await currentCarInGarage();
   await getCarsAPI().then((arr) => {
-    createCars(arr);
+    createCars(arr, START_PAGE_GARAGE);
   });
-
   await createPagination();
 }

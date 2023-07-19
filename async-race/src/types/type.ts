@@ -5,3 +5,8 @@ export type Car = {
   color: string;
   id?: number;
 };
+
+export type DataButtons = {
+  name: string;
+  id: string;
+};

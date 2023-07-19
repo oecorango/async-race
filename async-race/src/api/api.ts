@@ -26,3 +26,15 @@ export const removeCarAPI = async (id: number): Promise<Car> => {
   const data: Car = await response.json();
   return data;
 };
+
+export const editCarAPI = async (param: Car): Promise<Car> => {
+  const response = await fetch(`${URL}${PATH_MAP.garage}/${param.id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(param),
+  });
+  const data: Car = await response.json();
+  return data;
+};
