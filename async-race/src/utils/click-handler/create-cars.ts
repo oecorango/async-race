@@ -18,6 +18,7 @@ export async function createCars(cars: Car[] | Car, page: number): Promise<void>
   });
 }
 
+// объединить эту функцию с предыдущей
 export async function createOneCar(car: Car | null): Promise<void> {
   const currentCarsOnPage = document.querySelectorAll('.car').length;
   if (currentCarsOnPage < CARS_ON_PAGE) {
@@ -26,3 +27,7 @@ export async function createOneCar(car: Car | null): Promise<void> {
     }
   }
 }
+
+// export function createRandomCars(): void {
+
+// }

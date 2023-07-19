@@ -1,4 +1,4 @@
-import { createCarParams } from '../../api/create-one-car';
+import { createCarParams, createOneHangaredCarsParams } from '../../api/create-car-api';
 import { createOneCar } from './create-cars';
 import { clickPrevNextBtn } from './open-next-prev-page';
 import { clickRemoveCarBtn } from './remove-car';
@@ -29,10 +29,23 @@ function clickCreateCarBtn(): void {
   }
 }
 
+function clickGenerateCars(): void {
+  const button: HTMLButtonElement | null = document.querySelector('[data-name="generate"]');
+  if (button) {
+    button.addEventListener('click', async () => {
+      createOneHangaredCarsParams(); /* then((car) => createOneCar(car)) */
+      increaseNumberCarsInGarage();
+      onOffPrevButton();
+      await onOffNextButton();
+    });
+  }
+}
+
 export async function clickHandler(): Promise<void> {
   clickGeneralBtn();
   clickCreateCarBtn();
   clickPrevNextBtn();
   clickRemoveCarBtn();
   clickSelectCarBtn();
+  clickGenerateCars();
 }
