@@ -1,6 +1,8 @@
 import { Car, DataButtons } from '../types/type';
 import { START_PAGE_GARAGE } from './constants';
 import { getCarsAPI } from '../api/api';
+import carImage from '../assets/car.gif';
+import finishImage from '../assets/finish.png';
 
 export function createElement(parent: string, tag: string, className: string[], text?: string, dataId?: string): void {
   const parentElement = document.querySelector(parent);
@@ -42,6 +44,20 @@ export function createImage(parent: string, path: string, color?: string, name?:
   if (name) img.classList.add(name);
   if (idName) img.dataset.id = idName;
   parentElement?.append(img);
+}
+
+export function createCar(id: number, name: string, color: string): void {
+  createElement('.garage_cars', 'div', ['car', `car_${id}`]);
+  createElement(`.car_${id}`, 'div', ['option', `option-${id}`]);
+  createButton(`.option-${id}`, 'SELECT', { name: 'select', id: `${id}` });
+  createButton(`.option-${id}`, 'REMOVE', { name: 'remove', id: `${id}` });
+  createElement(`.option-${id}`, 'h3', [], `${name}`, `text-${id}`);
+  createElement(`.car_${id}`, 'div', ['track', `track-${id}`]);
+  createElement(`.track-${id}`, 'div', [`car_motor-${id}`]);
+  createButton(`.car_motor-${id}`, 'A', { name: 'a', id: `${id}` });
+  createButton(`.car_motor-${id}`, 'B', { name: 'b', id: `${id}` }, 'disabled');
+  createImage(`.car_motor-${id}`, carImage, `${color}`, '', `image-${id}`);
+  createImage(`.track-${id}`, finishImage, '', 'finish');
 }
 
 export function currentPageGarage(): number {
