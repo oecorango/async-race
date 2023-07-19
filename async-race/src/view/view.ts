@@ -1,6 +1,6 @@
 import { getCarsAPI } from '../api/api';
+import { createCars } from '../utils/click-handler/create-cars';
 import { CARS_ON_PAGE, START_PAGE_GARAGE } from '../utils/constants';
-import { createCars } from '../utils/create-cars';
 import { createButton, createElement, createInput } from '../utils/utils';
 
 function createGeneralButtons(): void {

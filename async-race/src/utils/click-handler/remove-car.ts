@@ -1,5 +1,5 @@
-import { removeCarAPI } from '../api/api';
-import { reduceNumberCarsInGarage, removeOneCar } from './utils';
+import { removeCarAPI } from '../../api/api';
+import { reduceNumberCarsInGarage, removeOneCar } from '../utils';
 
 export function clickRemoveCarBtn(): void {
   const garage = document.querySelector('.garage_cars');
