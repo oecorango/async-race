@@ -9,3 +9,7 @@ export const PATH_MAP: Record<string, Path> = {
 
 export const START_PAGE_GARAGE = 1;
 export const CARS_ON_PAGE = 7;
+export const WIDTH_GARAGE_PADDING = 150;
+export const ANIMATION_TIME = 2000;
+export const MILLISECOND = 1000;
+export const CADRES = 360;

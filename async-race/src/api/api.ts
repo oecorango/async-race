@@ -1,4 +1,4 @@
-import { Car } from '../types/type';
+import { Car, OptionsStatus, Speed } from '../types/type';
 import { PATH_MAP, URL } from '../utils/constants';
 
 export const getCarsAPI = async (): Promise<Car[]> => {
@@ -37,4 +37,14 @@ export const editCarAPI = async (param: Car): Promise<Car> => {
   });
   const data: Car = await response.json();
   return data;
+};
+
+export const startCarAPI = async (id: number, param: OptionsStatus): Promise<number> => {
+  const response = await fetch(`${URL}${PATH_MAP.engine}?id=${id}&status=${param}`, {
+    method: 'PATCH',
+    body: JSON.stringify(param),
+  });
+  const data: Speed = await response.json();
+  const time = data.distance / data.velocity;
+  return time;
 };

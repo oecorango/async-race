@@ -4,6 +4,7 @@ import { clickPrevNextBtn } from './open-next-prev-page';
 import { clickRemoveCarBtn } from './remove-car';
 import { clickSelectCarBtn } from './rename-car';
 import { increaseNumberCarsInGarage, onOffNextButton, onOffPrevButton } from '../utils';
+import { clickStartStopCar } from './start-stop-car';
 
 function clickGeneralBtn(): void {
   const buttons: NodeListOf<HTMLButtonElement> = document.querySelectorAll('[data-name="general"]');
@@ -48,4 +49,5 @@ export async function clickHandler(): Promise<void> {
   clickRemoveCarBtn();
   clickSelectCarBtn();
   clickGenerateCars();
+  clickStartStopCar();
 }
