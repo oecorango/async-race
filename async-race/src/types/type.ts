@@ -1,5 +1,5 @@
 export type Path = '/garage' | '/engine' | '/winners';
-export type OptionsStatus = 'started' | 'stopped';
+export type OptionsStatus = 'started' | 'stopped' | 'drive';
 
 export type Car = {
   name: string;
@@ -15,4 +15,8 @@ export type Speed = {
 export type DataButtons = {
   name: string;
   id: string;
+};
+
+export type DriveMode = {
+  success: boolean;
 };

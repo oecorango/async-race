@@ -105,9 +105,12 @@ export function onOffPrevButton(): void {
 export async function onOffNextButton(): Promise<void> {
   const nextButton: HTMLButtonElement | null = document.querySelector('[data-id="next"]');
   const currentPage = currentPageGarage();
-  const allPages = Math.ceil((await getCarsAPI()).length / 7);
-  if (currentPage === allPages && nextButton) nextButton.disabled = true;
-  if (currentPage < allPages && nextButton) nextButton.disabled = false;
+  const arrayCars = await getCarsAPI();
+  if (arrayCars) {
+    const allPages = Math.ceil(arrayCars.length / 7);
+    if (currentPage === allPages && nextButton) nextButton.disabled = true;
+    if (currentPage < allPages && nextButton) nextButton.disabled = false;
+  }
 }
 
 export function enabledEditCarElement(): void {

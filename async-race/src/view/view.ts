@@ -39,25 +39,28 @@ function createRaceButton(): void {
 
 async function currentCarInGarage(): Promise<void> {
   const carsInGarage = await getCarsAPI();
+  if (carsInGarage) {
+    const countCarInGarage = carsInGarage.length;
+    const countGaragePage = START_PAGE_GARAGE;
 
-  const countCarInGarage = carsInGarage.length;
-  const countGaragePage = START_PAGE_GARAGE;
-
-  createElement('.garage', 'h2', ['cars_in-garage'], `Cars in garage #${countCarInGarage}`);
-  createElement('.garage', 'h2', ['current_garage-page'], `Page #${countGaragePage}`);
+    createElement('.garage', 'h2', ['cars_in-garage'], `Cars in garage #${countCarInGarage}`);
+    createElement('.garage', 'h2', ['current_garage-page'], `Page #${countGaragePage}`);
+  }
 }
 
 async function createPagination(): Promise<void> {
   const carsInGarage = await getCarsAPI();
-  const countCarInGarage = carsInGarage.length;
+  if (carsInGarage) {
+    const countCarInGarage = carsInGarage.length;
 
-  createElement('.garage', 'div', ['pagination_button']);
+    createElement('.garage', 'div', ['pagination_button']);
 
-  createButton('.pagination_button', 'PREV', { name: 'pagination', id: 'prev' }, 'disabled');
-  if (countCarInGarage > CARS_ON_PAGE) {
-    createButton('.pagination_button', 'NEXT', { name: 'pagination', id: 'next' });
-  } else {
-    createButton('.pagination_button', 'NEXT', { name: 'pagination', id: 'next' }, 'disabled');
+    createButton('.pagination_button', 'PREV', { name: 'pagination', id: 'prev' }, 'disabled');
+    if (countCarInGarage > CARS_ON_PAGE) {
+      createButton('.pagination_button', 'NEXT', { name: 'pagination', id: 'next' });
+    } else {
+      createButton('.pagination_button', 'NEXT', { name: 'pagination', id: 'next' }, 'disabled');
+    }
   }
 }
 
@@ -69,8 +72,9 @@ export async function createPage(): Promise<void> {
   createRaceButton();
 
   await currentCarInGarage();
-  await getCarsAPI().then((arr) => {
-    createCars(arr, START_PAGE_GARAGE);
-  });
+
+  const arr = await getCarsAPI();
+  if (arr) createCars(arr, START_PAGE_GARAGE);
+
   await createPagination();
 }

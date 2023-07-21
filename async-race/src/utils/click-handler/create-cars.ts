@@ -27,7 +27,3 @@ export async function createOneCar(car: Car | null): Promise<void> {
     }
   }
 }
-
-// export function createRandomCars(): void {
-
-// }

@@ -1,27 +1,5 @@
-import { startCarAPI } from '../../api/api';
+import { driveCar } from '../../api/drive-car';
 import { WIDTH_GARAGE_PADDING } from '../constants';
-import { animationCar } from '../drive-car';
-
-// сделать внутри функции стрелочные сравнения
-async function disEnCarButtons(button: NodeListOf<HTMLButtonElement>, time: number): Promise<number> {
-  button.forEach((btn) => {
-    const carBtn = btn;
-    if (btn.disabled) {
-      carBtn.disabled = false;
-    } else {
-      carBtn.disabled = true;
-    }
-
-    setTimeout(() => {
-      if (btn.disabled) {
-        carBtn.disabled = false;
-      } else {
-        carBtn.disabled = true;
-      }
-    }, time);
-  });
-  return time;
-}
 
 export function clickStartStopCar(): void {
   const garage: HTMLElement | null = document.querySelector('.garage_cars');
@@ -36,9 +14,7 @@ export function clickStartStopCar(): void {
           const buttonsStartStop: NodeListOf<HTMLButtonElement> = garage.querySelectorAll(`[data-id="${carID}"]`);
           const distance = garage.offsetWidth - WIDTH_GARAGE_PADDING;
 
-          startCarAPI(Number(carID), 'started')
-            .then((time) => disEnCarButtons(buttonsStartStop, time))
-            .then((time) => animationCar(Number(carID), distance, time));
+          driveCar(Number(carID), distance, buttonsStartStop);
         }
       });
 
