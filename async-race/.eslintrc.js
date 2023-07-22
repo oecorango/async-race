@@ -46,6 +46,6 @@ module.exports = {
     '@typescript-eslint/explicit-function-return-type': 'error',
     '@typescript-eslint/no-unnecessary-type-assertion': 'error',
     '@typescript-eslint/no-non-null-assertion': 'error',
-    "no-console": 50,
+    "no-console": 0,
   },
 };

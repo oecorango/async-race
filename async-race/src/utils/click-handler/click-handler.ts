@@ -5,6 +5,7 @@ import { clickRemoveCarBtn } from './remove-car';
 import { clickSelectCarBtn } from './rename-car';
 import { increaseNumberCarsInGarage, onOffNextButton, onOffPrevButton } from '../utils';
 import { clickStartStopCar } from './start-stop-car';
+import { startRace } from './start-race';
 
 function clickGeneralBtn(): void {
   const buttons: NodeListOf<HTMLButtonElement> = document.querySelectorAll('[data-name="general"]');
@@ -34,7 +35,7 @@ function clickGenerateCars(): void {
   const button: HTMLButtonElement | null = document.querySelector('[data-name="generate"]');
   if (button) {
     button.addEventListener('click', async () => {
-      createOneHangaredCarsParams(); /* then((car) => createOneCar(car)) */
+      createOneHangaredCarsParams();
       increaseNumberCarsInGarage();
       onOffPrevButton();
       await onOffNextButton();
@@ -50,4 +51,5 @@ export async function clickHandler(): Promise<void> {
   clickSelectCarBtn();
   clickGenerateCars();
   clickStartStopCar();
+  startRace();
 }

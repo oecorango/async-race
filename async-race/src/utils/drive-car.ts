@@ -1,6 +1,7 @@
 import { driveCarAPI, startCarAPI, stopCarAPI } from '../api/api';
 import { CADRES, MILLISECOND, OPTIONS_MAP } from './constants';
 
+// переделать эту функцию, т.к. значение перезаписывается и стопается не там машинка.
 let requestId: number | null = null;
 
 async function animationCar(carId: number, endX: number, time: number): Promise<void> {
@@ -22,7 +23,7 @@ async function animationCar(carId: number, endX: number, time: number): Promise<
   }
 }
 
-function returnCarsOnStart(carId: number) {
+function returnCarsOnStart(carId: number): void {
   const car: HTMLElement | null = document.querySelector(`[data-id="image-${carId}"]`);
   if (car) car.style.transform = `translateX(${0}px)`;
 }
@@ -39,29 +40,18 @@ async function disEnCarButtons(button: NodeListOf<HTMLButtonElement>): Promise<v
 }
 
 export async function driveCar(id: number, distance: number, buttons: NodeListOf<HTMLButtonElement>): Promise<void> {
-  try {
-    disEnCarButtons(buttons);
-    const time = await startCarAPI(id, OPTIONS_MAP.started);
-    if (time) {
-      animationCar(id, distance, time);
-    }
-
-    const drive = await driveCarAPI(id, OPTIONS_MAP.drive);
-    if (!drive && requestId) {
-      cancelAnimationFrame(requestId);
-    }
-  } catch (err) {
-    console.warn(err);
+  disEnCarButtons(buttons);
+  const time = await startCarAPI(id, OPTIONS_MAP.started);
+  await animationCar(id, distance, Number(time));
+  const drive = await driveCarAPI(id, OPTIONS_MAP.drive);
+  if (!drive && requestId) {
+    cancelAnimationFrame(requestId);
   }
 }
 
 export async function stopCar(id: number, buttons: NodeListOf<HTMLButtonElement>): Promise<void> {
-  try {
-    if (requestId) cancelAnimationFrame(requestId);
-    disEnCarButtons(buttons);
-    returnCarsOnStart(id);
-    await stopCarAPI(id, OPTIONS_MAP.stopped);
-  } catch (err) {
-    console.warn(err);
-  }
+  if (requestId) cancelAnimationFrame(requestId);
+  disEnCarButtons(buttons);
+  returnCarsOnStart(id);
+  await stopCarAPI(id, OPTIONS_MAP.stopped);
 }

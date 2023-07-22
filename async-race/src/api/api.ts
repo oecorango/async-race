@@ -12,6 +12,17 @@ export const getCarsAPI = async (): Promise<Car[] | null> => {
   return null;
 };
 
+export const getCarsOnPageAPI = async (currentPage: number): Promise<Car[] | null> => {
+  try {
+    const response = await fetch(`${URL}${PATH_MAP.garage}?_page=${currentPage}&_limit=7`);
+    const data: Car[] = await response.json();
+    return data;
+  } catch (err) {
+    console.warn(err);
+  }
+  return null;
+};
+
 export const createCarAPI = async (param: Car): Promise<Car | null> => {
   try {
     const response = await fetch(`${URL}${PATH_MAP.garage}`, {
@@ -80,10 +91,8 @@ export async function driveCarAPI(id: number, param: OptionsStatus): Promise<Dri
       method: 'PATCH',
       body: JSON.stringify(param),
     });
-    if (response.status === 200) {
-      const data: DriveMode = await response.json();
-      return data;
-    }
+    const data: DriveMode = await response.json();
+    return data;
   } catch (err) {
     console.warn(err);
   }
