@@ -1,4 +1,5 @@
 export type Path = '/garage' | '/engine' | '/winners';
+export type Category = 'garage' | 'engine' | 'winners';
 export type OptionsStatus = 'started' | 'stopped' | 'drive';
 
 export type Car = {

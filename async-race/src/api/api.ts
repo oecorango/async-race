@@ -75,16 +75,31 @@ export const startCarAPI = async (id: number, param: OptionsStatus): Promise<num
 };
 
 export async function driveCarAPI(id: number, param: OptionsStatus): Promise<DriveMode | null> {
-  const response = await fetch(`${URL}${PATH_MAP.engine}?id=${id}&status=${param}`, {
-    method: 'PATCH',
-    body: JSON.stringify(param),
-  });
-  if (response.status === 200) {
+  try {
+    const response = await fetch(`${URL}${PATH_MAP.engine}?id=${id}&status=${param}`, {
+      method: 'PATCH',
+      body: JSON.stringify(param),
+    });
+    if (response.status === 200) {
+      const data: DriveMode = await response.json();
+      return data;
+    }
+  } catch (err) {
+    console.warn(err);
+  }
+  return null;
+}
+
+export async function stopCarAPI(id: number, param: OptionsStatus): Promise<DriveMode | null> {
+  try {
+    const response = await fetch(`${URL}${PATH_MAP.engine}?id=${id}&status=${param}`, {
+      method: 'PATCH',
+      body: JSON.stringify(param),
+    });
     const data: DriveMode = await response.json();
     return data;
-  }
-  if (response.status === 500) {
-    console.warn('Motor crashed');
+  } catch (err) {
+    console.warn(err);
   }
   return null;
 }

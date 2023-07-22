@@ -1,4 +1,4 @@
-import { editCarParams } from '../../api/edit-car';
+import { editCarParams } from '../../api/edit-car-api';
 import { disabledEditCarElement, editCar, enabledEditCarElement } from '../utils';
 
 let carID = 1;

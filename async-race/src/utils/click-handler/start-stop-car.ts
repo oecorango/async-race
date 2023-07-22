@@ -1,4 +1,4 @@
-import { driveCar } from '../../api/drive-car';
+import { driveCar, stopCar } from '../drive-car';
 import { WIDTH_GARAGE_PADDING } from '../constants';
 
 export function clickStartStopCar(): void {
@@ -21,8 +21,10 @@ export function clickStartStopCar(): void {
       const storButtons: NodeListOf<HTMLButtonElement> = garage.querySelectorAll('[data-name="b"]');
       storButtons.forEach((stopButton) => {
         if (stopButton === event.target) {
-          const carID = Number(stopButton.dataset.id);
-          console.log(carID);
+          const carID = stopButton.dataset.id;
+          const buttonsStartStop: NodeListOf<HTMLButtonElement> = garage.querySelectorAll(`[data-id="${carID}"]`);
+
+          stopCar(Number(carID), buttonsStartStop);
         }
       });
     });
