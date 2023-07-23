@@ -1,10 +1,10 @@
 import { getCarsOnPageAPI } from '../../api/api';
 import { Car } from '../../types/type';
 import { WIDTH_GARAGE_PADDING } from '../constants';
-import { driveCar } from '../drive-car';
+import { driveCar, stopCar } from '../drive-car';
 import { currentPageGarage } from '../utils';
 
-async function raceCar(cars: Car[]): Promise<void> {
+async function raceCars(cars: Car[]): Promise<void> {
   const garage: HTMLElement | null = document.querySelector('.garage_cars');
   if (garage)
     cars.forEach((car) => {
@@ -16,13 +16,33 @@ async function raceCar(cars: Car[]): Promise<void> {
     });
 }
 
-export async function startRace(): Promise<void> {
+async function stopRace(cars: Car[]): Promise<void> {
+  const garage: HTMLElement | null = document.querySelector('.garage_cars');
+  if (garage)
+    cars.forEach((car) => {
+      if (car.id) {
+        const buttonsStartStop: NodeListOf<HTMLButtonElement> = garage.querySelectorAll(`[data-id="${car.id}"]`);
+        stopCar(car.id, buttonsStartStop);
+      }
+    });
+}
+
+export async function startStopRace(): Promise<void> {
   const raceButton: HTMLElement | null = document.querySelector('[data-name="race"]');
+  const stopRaceButton: HTMLElement | null = document.querySelector('[data-name="reset"]');
 
   if (raceButton)
     raceButton.addEventListener('click', async () => {
       const currentPage = currentPageGarage();
       const carsOnCurrentPage = await getCarsOnPageAPI(currentPage);
-      if (carsOnCurrentPage) raceCar(carsOnCurrentPage);
+      if (carsOnCurrentPage) raceCars(carsOnCurrentPage);
     });
+
+  if (stopRaceButton) {
+    stopRaceButton.addEventListener('click', async () => {
+      const currentPage = currentPageGarage();
+      const carsOnCurrentPage = await getCarsOnPageAPI(currentPage);
+      if (carsOnCurrentPage) stopRace(carsOnCurrentPage);
+    });
+  }
 }
