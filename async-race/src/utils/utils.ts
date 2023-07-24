@@ -90,7 +90,16 @@ export function increaseNumberCarsInGarage(): void {
   const carsInGarage: HTMLElement | null = document.querySelector(`.cars_in-garage`);
   if (carsInGarage) {
     const number = carsInGarage.innerText.split('#')[1];
-    const newString = +number + 1;
+    const newString = Number(number) + 1;
+    carsInGarage.innerText = `Cars in garage #${newString}`;
+  }
+}
+
+export function increaseNumberCarsInGarageOnOneHundred(): void {
+  const carsInGarage: HTMLElement | null = document.querySelector(`.cars_in-garage`);
+  if (carsInGarage) {
+    const number = carsInGarage.innerText.split('#')[1];
+    const newString = Number(number) + 100;
     carsInGarage.innerText = `Cars in garage #${newString}`;
   }
 }

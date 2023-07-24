@@ -4,7 +4,7 @@
   display: flex;
   align-items: center;
   & button {
-    width: 100px;
+    width: 140px;
   }
   > * {
     margin: 2px 5px;
@@ -13,8 +13,11 @@
 }
 
 .race {
+  & button {
+    width: 110px;
+  }
   & :last-child {
-    width: 160px;
+    width: 175px;
   }
 }
 
