@@ -1,10 +1,41 @@
 .create_car, 
-.edit_car {
+.edit_car,
+.race {
   display: flex;
   align-items: center;
   & button {
     width: 100px;
   }
+  > * {
+    margin: 2px 5px;
+    border-radius: 5px;
+  }
+}
+
+.race {
+  & :last-child {
+    width: 160px;
+  }
+}
+
+.garage {
+  user-select: none;
+  & h2 {
+    margin: 10px;
+  }
+}
+
+.garage_cars {
+  margin: 0 5px;
+  & button {
+    border-radius: 5px;
+    margin: 0 5px;
+    color: $color-light;
+    background-color: $color-yellow-light;
+    &:disabled {
+      background-color: $color-blue;
+    }
+  };
 }
 
 .car {
@@ -37,9 +68,20 @@
 }
 
 .finish {
-  padding-right: 100px;
+  padding-right: 80px;
 }
 
+.pagination_button {
+  & button {
+    border-radius: 5px;
+    margin: 0 5px;
+    color: $color-light;
+    background-color: $color-yellow-light;
+    &:disabled {
+      background-color: $color-blue;
+    }
+  }
+}
 // .car_animated {
 //   animation: 4s linear car_drive forwards;
 //   animation-play-state: running;
