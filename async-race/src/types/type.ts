@@ -1,6 +1,7 @@
 export type Path = '/garage' | '/engine' | '/winners';
 export type Category = 'garage' | 'engine' | 'winners';
 export type OptionsStatus = 'started' | 'stopped' | 'drive';
+export type Action = 'add' | 'remove' | 'add-100';
 
 export type Car = {
   name: string;
@@ -21,3 +22,11 @@ export type DataButtons = {
 export type DriveMode = {
   success: boolean;
 };
+
+export type Winners = {
+  id: number;
+  wins: number;
+  time: number;
+};
+
+// export type OptionsWinners = '_page=' | '_limit=' | '_sort=' | '_order=';

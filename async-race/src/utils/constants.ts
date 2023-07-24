@@ -16,9 +16,32 @@ export const OPTIONS_MAP: Record<OptionsStatus, OptionsStatus> = {
 
 export const START_PAGE_GARAGE = 1;
 export const CARS_ON_PAGE = 7;
+export const WINNERS_ON_PAGE = 10;
 export const WIDTH_GARAGE_PADDING = 150;
 export const MILLISECOND = 1000;
 export const CADRES = 350;
 export const WIGHT_CAR = 50;
-export const FIRST_NAME = ['aw', 'qwes', 'dqwe', 'fsss', 'gqwe', 'qwew', 'hqq', 'utyuj', 'qwek', 'qwerrl'];
-export const LAST_NAME = ['11', '22', '33', '44', '55', '66', '77', '88', '99', '00'];
+export const FIRST_NAME = [
+  'Coronatae',
+  'Rhizostomeae',
+  'Semaeostomeae',
+  'Nausithoidaess',
+  'Paraphyllinidae',
+  'Periphyllidae',
+  'Catostylidae',
+  'Lobonematidae',
+  'Stomolophidae',
+  'Atollidae',
+];
+export const LAST_NAME = [
+  'Cassiopeidae',
+  'Cepheidae',
+  'Mastigiidae',
+  'Thysanostomatidae',
+  'Versurigidae',
+  'Cyaneidae',
+  'Drymonematidae',
+  'Pelagiidae',
+  'Phacellophoridae',
+  'Ulmaridae',
+];

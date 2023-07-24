@@ -1,10 +1,12 @@
 import './app.scss';
 import { clickHandler } from './utils/click-handler/click-handler';
-import { createPage } from './view/view';
+import { createGaragePage } from './view/garage-page';
+import { createWinnersPage } from './view/winners-page';
 
 async function start(): Promise<void> {
   try {
-    await createPage();
+    await createGaragePage();
+    await createWinnersPage();
     await clickHandler();
   } catch (err) {
     console.warn(err);

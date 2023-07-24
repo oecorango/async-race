@@ -1,4 +1,4 @@
-import { Car, DataButtons } from '../types/type';
+import { Action, Car, DataButtons } from '../types/type';
 import { START_PAGE_GARAGE } from './constants';
 import { getCarsAPI } from '../api/api';
 import carImage from '../assets/car.gif';
@@ -77,29 +77,14 @@ export function removeOneCar(idCar: number): void {
   car?.remove();
 }
 
-export function reduceNumberCarsInGarage(): void {
+export function changeNumberCarsInGarage(action: Action): void {
   const carsInGarage: HTMLElement | null = document.querySelector(`.cars_in-garage`);
   if (carsInGarage) {
+    let newString = null;
     const number = carsInGarage.innerText.split('#')[1];
-    const newString = +number - 1;
-    carsInGarage.innerText = `Cars in garage #${newString}`;
-  }
-}
-
-export function increaseNumberCarsInGarage(): void {
-  const carsInGarage: HTMLElement | null = document.querySelector(`.cars_in-garage`);
-  if (carsInGarage) {
-    const number = carsInGarage.innerText.split('#')[1];
-    const newString = Number(number) + 1;
-    carsInGarage.innerText = `Cars in garage #${newString}`;
-  }
-}
-
-export function increaseNumberCarsInGarageOnOneHundred(): void {
-  const carsInGarage: HTMLElement | null = document.querySelector(`.cars_in-garage`);
-  if (carsInGarage) {
-    const number = carsInGarage.innerText.split('#')[1];
-    const newString = Number(number) + 100;
+    if (action === 'add') newString = Number(number) + 1;
+    if (action === 'add-100') newString = Number(number) + 100;
+    if (action === 'remove') newString = Number(number) - 1;
     carsInGarage.innerText = `Cars in garage #${newString}`;
   }
 }

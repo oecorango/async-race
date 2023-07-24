@@ -1,10 +1,21 @@
-import { Car, DriveMode, OptionsStatus, Speed } from '../types/type';
+import { Car, DriveMode, OptionsStatus, Speed, Winners } from '../types/type';
 import { PATH_MAP, URL } from '../utils/constants';
 
 export const getCarsAPI = async (): Promise<Car[] | null> => {
   try {
     const response = await fetch(`${URL}${PATH_MAP.garage}`);
     const data: Car[] = await response.json();
+    return data;
+  } catch (err) {
+    console.warn(err);
+  }
+  return null;
+};
+
+export const getCarAPI = async (id: number): Promise<Car | null> => {
+  try {
+    const response = await fetch(`${URL}${PATH_MAP.garage}/${id}`);
+    const data: Car = await response.json();
     return data;
   } catch (err) {
     console.warn(err);
@@ -148,4 +159,16 @@ export async function createWinCarAPI(cars: Car[], param: OptionsStatus): Promis
     console.warn(err);
   }
   return null;
+}
+
+export async function getWinnersAPI(currentPage = 1): Promise<Winners[]> {
+  return fetch(`${URL}${PATH_MAP.winners}?_page=${currentPage}&_limit=10`).then(async (response) => {
+    if (response.ok) {
+      return response.json();
+    }
+    const error = await response.json();
+    const err = new Error('Oops!');
+    err.message = error;
+    throw err;
+  });
 }

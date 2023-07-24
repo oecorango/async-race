@@ -13,7 +13,7 @@ function createPageSections(): void {
   createElement('body', 'section', ['winners', 'hidden']);
 }
 
-function createCarNewCar(): void {
+function createNewCar(): void {
   createElement('.garage', 'div', ['create_car']);
 
   createInput('.create_car', 'text', 'name-car-to-create');
@@ -62,10 +62,10 @@ async function createPagination(): Promise<void> {
   }
 }
 
-export async function createPage(): Promise<void> {
+export async function createGaragePage(): Promise<void> {
   createGeneralButtons();
   createPageSections();
-  createCarNewCar();
+  createNewCar();
   editCar();
   createRaceButton();
   await currentCarInGarage();

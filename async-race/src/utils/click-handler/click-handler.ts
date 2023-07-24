@@ -3,12 +3,7 @@ import { createOneCar } from './create-cars';
 import { clickPrevNextBtn } from './open-next-prev-page';
 import { clickRemoveCarBtn } from './remove-car';
 import { clickSelectCarBtn } from './rename-car';
-import {
-  increaseNumberCarsInGarage,
-  increaseNumberCarsInGarageOnOneHundred,
-  onOffNextButton,
-  onOffPrevButton,
-} from '../utils';
+import { changeNumberCarsInGarage, onOffNextButton, onOffPrevButton } from '../utils';
 import { clickStartStopCar } from './start-stop-car';
 import { startStopRace } from './start-race';
 
@@ -29,7 +24,7 @@ function clickCreateCarBtn(): void {
   if (button) {
     button.addEventListener('click', async () => {
       createCarParams().then((car) => createOneCar(car));
-      increaseNumberCarsInGarage();
+      changeNumberCarsInGarage('add');
       onOffPrevButton();
       await onOffNextButton();
     });
@@ -41,7 +36,7 @@ function clickGenerateCars(): void {
   if (button) {
     button.addEventListener('click', async () => {
       createOneHangaredCarsParams();
-      increaseNumberCarsInGarageOnOneHundred();
+      changeNumberCarsInGarage('add-100');
       onOffPrevButton();
       await onOffNextButton();
     });

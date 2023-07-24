@@ -2,18 +2,14 @@
 .winners {
   display: flex;
   flex-direction: column;
+  background-image: url(./assets/back.png);
   &.hidden {
     display: none;
   }
 }
 
-.garage {
-  background-image: url(./assets/back.png);
-}
-
 .winners {
   height: 800px;
-  background-color: $color-yellow;
 }
 
 .pagination_button {
