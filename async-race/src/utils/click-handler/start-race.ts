@@ -1,19 +1,21 @@
 import { getCarsOnPageAPI } from '../../api/api';
 import { Car } from '../../types/type';
 import { WIDTH_GARAGE_PADDING } from '../constants';
-import { driveCar, stopCar } from '../drive-car';
+import { disEnCarButtons, driveAllCars, stopCar } from '../drive-car';
 import { currentPageGarage } from '../utils';
 
 async function raceCars(cars: Car[]): Promise<void> {
   const garage: HTMLElement | null = document.querySelector('.garage_cars');
-  if (garage)
+  if (garage) {
+    const distance = garage.offsetWidth - WIDTH_GARAGE_PADDING;
+    driveAllCars(cars, distance);
     cars.forEach((car) => {
       if (car.id) {
         const buttonsStartStop: NodeListOf<HTMLButtonElement> = garage.querySelectorAll(`[data-id="${car.id}"]`);
-        const distance = garage.offsetWidth - WIDTH_GARAGE_PADDING;
-        driveCar(car.id, distance, buttonsStartStop);
+        disEnCarButtons(buttonsStartStop);
       }
     });
+  }
 }
 
 async function stopRace(cars: Car[]): Promise<void> {

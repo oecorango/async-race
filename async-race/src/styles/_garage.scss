@@ -39,3 +39,22 @@
 .finish {
   padding-right: 100px;
 }
+
+// .car_animated {
+//   animation: 4s linear car_drive forwards;
+//   animation-play-state: running;
+//   transform: translateX(300px);
+//   &.car_pause {
+//     animation-play-state: paused;
+//   }
+// }
+
+// // @keyframes car_drive {
+// //   from {
+// //     transform: translateX(0px);
+// //   }
+
+// //   to {
+// //     transform: translateX(80em);
+// //   }
+// // }

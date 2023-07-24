@@ -22,14 +22,9 @@ export async function createOneHangaredCarsParams(): Promise<void> {
     const arrName = ['aw', 'qwes', 'dqwe', 'fsss', 'gqwe', 'qwew', 'hqq', 'utyuj', 'qwek', 'qwerrl'];
     const resName = `${arrName[name]} ${arrName[name2]}`;
 
-    const color1 = Math.random();
-    const color2 = Math.random();
-    const color3 = Math.random();
-    const arrColor = [255, 255, 255];
+    const arrColor = [Math.random() * 255, Math.random() * 255, Math.random() * 255];
 
-    const resColor = `rgb(${Math.floor(arrColor[0] * color1)},${Math.floor(arrColor[1] * color2)},${Math.floor(
-      arrColor[2] * color3,
-    )})`;
+    const resColor = `rgb(${Math.floor(arrColor[0])},${Math.floor(arrColor[1])},${Math.floor(arrColor[2])})`;
 
     createCarAPI({
       name: resName,

@@ -1,13 +1,14 @@
-import { driveCarAPI, startCarAPI, stopCarAPI } from '../api/api';
-import { CADRES, MILLISECOND, OPTIONS_MAP } from './constants';
+import { createWinCarAPI, driveAllCarAPI, driveCarAPI, startCarAPI, stopCarAPI } from '../api/api';
+import { Car, Speed } from '../types/type';
+import { CADRES, MILLISECOND, OPTIONS_MAP, WIGHT_CAR } from './constants';
 
-// переделать эту функцию, т.к. значение перезаписывается и стопается не там машинка.
+// переделать эту функцию, т.к. значение перезаписывается и стопается не та машинка.
 let requestId: number | null = null;
 
-async function animationCar(carId: number, endX: number, time: number): Promise<void> {
+function animationCar(carId: number, endX: number, time: number): void {
   const car: HTMLElement | null = document.querySelector(`[data-id="image-${carId}"]`);
   if (car) {
-    let currentX = car.offsetLeft - 50;
+    let currentX = car.offsetLeft - WIGHT_CAR;
     const framesCurrent = (time / MILLISECOND) * CADRES;
     const dX = (endX - car.offsetLeft) / framesCurrent;
 
@@ -28,7 +29,7 @@ function returnCarsOnStart(carId: number): void {
   if (car) car.style.transform = `translateX(${0}px)`;
 }
 
-async function disEnCarButtons(button: NodeListOf<HTMLButtonElement>): Promise<void> {
+export async function disEnCarButtons(button: NodeListOf<HTMLButtonElement>): Promise<void> {
   button.forEach((btn) => {
     const carBtn = btn;
     if (btn.disabled) {
@@ -42,7 +43,7 @@ async function disEnCarButtons(button: NodeListOf<HTMLButtonElement>): Promise<v
 export async function driveCar(id: number, distance: number, buttons: NodeListOf<HTMLButtonElement>): Promise<void> {
   disEnCarButtons(buttons);
   const time = await startCarAPI(id, OPTIONS_MAP.started);
-  await animationCar(id, distance, Number(time));
+  animationCar(id, distance, Number(time));
   const drive = await driveCarAPI(id, OPTIONS_MAP.drive);
   if (!drive && requestId) {
     cancelAnimationFrame(requestId);
@@ -53,5 +54,20 @@ export async function stopCar(id: number, buttons: NodeListOf<HTMLButtonElement>
   if (requestId) cancelAnimationFrame(requestId);
   disEnCarButtons(buttons);
   returnCarsOnStart(id);
-  await stopCarAPI(id, OPTIONS_MAP.stopped);
+  stopCarAPI(id, OPTIONS_MAP.stopped);
+}
+
+export async function driveAllCars(cars: Car[], dist: number): Promise<void> {
+  const dataCars = await driveAllCarAPI(cars, OPTIONS_MAP.started);
+  if (dataCars) {
+    dataCars?.forEach(async (response) => {
+      const id = response.url.split('id=')[1].replace('&', ' ').split(' ')[0];
+      const data: Speed = await response.json();
+      const time = data.distance / data.velocity;
+      animationCar(Number(id), dist, Number(time));
+      console.log(response);
+    });
+  }
+  const carsWin = await createWinCarAPI(cars, OPTIONS_MAP.drive);
+  console.log(carsWin);
 }

@@ -91,8 +91,10 @@ export async function driveCarAPI(id: number, param: OptionsStatus): Promise<Dri
       method: 'PATCH',
       body: JSON.stringify(param),
     });
-    const data: DriveMode = await response.json();
-    return data;
+    if (response) {
+      const data: DriveMode = await response.json();
+      return data;
+    }
   } catch (err) {
     console.warn(err);
   }
@@ -107,6 +109,41 @@ export async function stopCarAPI(id: number, param: OptionsStatus): Promise<Driv
     });
     const data: DriveMode = await response.json();
     return data;
+  } catch (err) {
+    console.warn(err);
+  }
+  return null;
+}
+
+export async function driveAllCarAPI(cars: Car[], param: OptionsStatus): Promise<Response[] | null> {
+  try {
+    const response = cars.map((car) =>
+      fetch(`${URL}${PATH_MAP.engine}?id=${car.id}&status=${param}`, {
+        method: 'PATCH',
+        body: JSON.stringify(param),
+      }),
+    );
+    return await Promise.all(response);
+  } catch (err) {
+    console.warn(err);
+  }
+  return null;
+}
+
+export async function createWinCarAPI(cars: Car[], param: OptionsStatus): Promise<Response[] | null> {
+  try {
+    const responses = cars.map(async (car) =>
+      fetch(`${URL}${PATH_MAP.engine}?id=${car.id}&status=${param}`, {
+        method: 'PATCH',
+        body: JSON.stringify(param),
+      }),
+    );
+    Promise.any(responses).then(() =>
+      fetch(`${URL}${PATH_MAP.winners}`, {
+        method: 'POST',
+        body: JSON.stringify(param),
+      }),
+    );
   } catch (err) {
     console.warn(err);
   }

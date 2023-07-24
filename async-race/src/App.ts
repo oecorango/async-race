@@ -7,7 +7,7 @@ async function start(): Promise<void> {
     await createPage();
     await clickHandler();
   } catch (err) {
-    console.warn(err)
+    console.warn(err);
   }
 }
 
