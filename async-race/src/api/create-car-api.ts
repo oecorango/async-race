@@ -1,4 +1,5 @@
 import { Car } from '../types/type';
+import { FIRST_NAME, LAST_NAME } from '../utils/constants';
 import { createCarAPI } from './api';
 
 export async function createCarParams(): Promise<Car | null> {
@@ -17,14 +18,13 @@ export async function createCarParams(): Promise<Car | null> {
 
 export async function createOneHangaredCarsParams(): Promise<void> {
   for (let i = 0; i < 100; i += 1) {
-    const name = Math.floor(Math.random() * 10);
-    const name2 = Math.floor(Math.random() * 10);
-    const arrName = ['aw', 'qwes', 'dqwe', 'fsss', 'gqwe', 'qwew', 'hqq', 'utyuj', 'qwek', 'qwerrl'];
-    const resName = `${arrName[name]} ${arrName[name2]}`;
+    const index = Math.floor(Math.random() * 10);
+    const index2 = Math.floor(Math.random() * 10);
 
-    const arrColor = [Math.random() * 255, Math.random() * 255, Math.random() * 255];
+    const resName = `${FIRST_NAME[index]} ${LAST_NAME[index2]}`;
 
-    const resColor = `rgb(${Math.floor(arrColor[0])},${Math.floor(arrColor[1])},${Math.floor(arrColor[2])})`;
+    const colorCar = [Math.random() * 255, Math.random() * 255, Math.random() * 255];
+    const resColor = `rgb(${Math.floor(colorCar[0])},${Math.floor(colorCar[1])},${Math.floor(colorCar[2])})`;
 
     createCarAPI({
       name: resName,

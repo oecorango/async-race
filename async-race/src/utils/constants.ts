@@ -20,3 +20,5 @@ export const WIDTH_GARAGE_PADDING = 150;
 export const MILLISECOND = 1000;
 export const CADRES = 350;
 export const WIGHT_CAR = 50;
+export const FIRST_NAME = ['aw', 'qwes', 'dqwe', 'fsss', 'gqwe', 'qwew', 'hqq', 'utyuj', 'qwek', 'qwerrl'];
+export const LAST_NAME = ['11', '22', '33', '44', '55', '66', '77', '88', '99', '00'];
