@@ -1,6 +1,10 @@
 import { Car, DriveMode, OptionsStatus, Speed, Winners } from '../types/type';
 import { PATH_MAP, URL } from '../utils/constants';
 
+/* И да, тут самое то надо было бы сделать через class это все,
+но понял это только тогда, когда код очень сильно увеличился, 
+а функции то по сути все одинаковые, но понял что переделывать - потратить много времени */
+
 export const getCarsAPI = async (): Promise<Car[] | null> => {
   const response = await fetch(`${URL}${PATH_MAP.garage}`);
   try {
@@ -166,3 +170,45 @@ export async function createWinnerAPI(id: number, time: number, wins = 1): Promi
   }
   return null;
 }
+
+export async function getWinnerAPI(id: number): Promise<Winners | null> {
+  const response = await fetch(`${URL}${PATH_MAP.winners}/${id}`);
+  try {
+    const data: Winners = await response.json();
+    return data;
+  } catch (err) {
+    console.warn(err);
+  }
+  return null;
+}
+
+export async function updateWinnerAPI(id: number, wins: number, time: number): Promise<Winners | null> {
+  const param = { wins, time };
+  const response = await fetch(`${URL}${PATH_MAP.winners}/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(param),
+  });
+  try {
+    const data: Winners = await response.json();
+    return data;
+  } catch (err) {
+    console.warn(err);
+  }
+  return null;
+}
+
+export const removeWinnerAPI = async (id: number): Promise<Winners | null> => {
+  const response = await fetch(`${URL}${PATH_MAP.winners}/${id}`, {
+    method: 'DELETE',
+  });
+  try {
+    const data: Winners = await response.json();
+    return data;
+  } catch (err) {
+    console.warn(err);
+  }
+  return null;
+};

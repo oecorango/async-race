@@ -145,3 +145,8 @@ export async function editCar(car: Car | null): Promise<void> {
     }
   }
 }
+
+export async function removeWinnerOnTable(id: number): Promise<void> {
+  const pageWinners = document.querySelector(`[data-car_win_id="${id}"]`);
+  pageWinners?.replaceChildren();
+}

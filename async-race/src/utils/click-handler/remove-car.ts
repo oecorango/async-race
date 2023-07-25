@@ -1,4 +1,4 @@
-import { removeCarAPI } from '../../api/api';
+import { removeCarAPI, removeWinnerAPI } from '../../api/api';
 import { changeNumberCarsInGarage, removeOneCar } from '../utils';
 
 export function clickRemoveCarBtn(): void {
@@ -11,6 +11,7 @@ export function clickRemoveCarBtn(): void {
           const idCar = button.dataset.id;
           if (idCar) {
             removeCarAPI(Number(idCar));
+            removeWinnerAPI(Number(idCar));
             removeOneCar(Number(idCar));
             changeNumberCarsInGarage('remove');
           }

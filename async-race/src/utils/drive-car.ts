@@ -1,9 +1,27 @@
-import { startAllCarAPI, driveCarAPI, startCarAPI, stopCarAPI, createWinnerAPI } from '../api/api';
+import {
+  startAllCarAPI,
+  driveCarAPI,
+  startCarAPI,
+  stopCarAPI,
+  createWinnerAPI,
+  getWinnerAPI,
+  updateWinnerAPI,
+  getCarAPI,
+} from '../api/api';
 import { Car, Speed } from '../types/type';
+import { createModalForWin, removeModalForWin } from '../view/create-modal-win';
 import { createWinCar } from '../view/winners-page';
 import { CADRES, MILLISECOND, OPTIONS_MAP, WIGHT_CAR } from './constants';
+import { removeWinnerOnTable } from './utils';
 
-// переделать эту функцию, т.к. значение перезаписывается и стопается не та машинка.
+/*  так и не смог придумать как переделать данную функцию, т.к при запуске множества анимаций
+    requestId перезаписывается, а вызовы анимаций идут не последовательно, т.к сервер какие-то
+    запросы обрабатывает быстрее другие, медленее. В итоге cancelAnimationFrame прерывает не ту
+    анимацию.
+    Пытался написать анимацию через css, но что то не придумал как у @keyframes через js менять начальные
+    и конечные позиции
+*/
+
 let requestId: number | null = null;
 
 function animationCar(carId: number, endX: number, time: number): void {
@@ -58,10 +76,12 @@ export async function stopCar(id: number, buttons: NodeListOf<HTMLButtonElement>
   stopCarAPI(id, OPTIONS_MAP.stopped);
 }
 
+// тут очень страшная функция, подумаю как ее переделать...
 export async function driveAllCars(cars: Car[], dist: number): Promise<void> {
   const dataCars = await startAllCarAPI(cars, OPTIONS_MAP.started);
   if (dataCars) {
-    let timeWin = 0;
+    let timeCurrentWin = 0;
+
     dataCars?.map(async (response) => {
       const id = response.url.split('id=')[1].replace('&', ' ').split(' ')[0];
       const data: Speed = await response.json();
@@ -69,13 +89,30 @@ export async function driveAllCars(cars: Car[], dist: number): Promise<void> {
       animationCar(Number(id), dist, Number(time));
 
       const drive = await driveCarAPI(Number(id), OPTIONS_MAP.drive);
+      const car = await getCarAPI(Number(id));
       if (!drive) {
         if (requestId) cancelAnimationFrame(requestId);
       }
-      if (drive && timeWin === 0) {
-        timeWin = time / 1000;
-        createWinnerAPI(Number(id), timeWin);
-        createWinCar({ id: Number(id), wins: 1, time: timeWin });
+      if (drive && timeCurrentWin === 0 && car) {
+        timeCurrentWin = time / MILLISECOND;
+
+        const oldWinner = await getWinnerAPI(Number(id));
+        if (oldWinner) {
+          const oldWins = oldWinner.wins;
+          const oldTime = oldWinner.time;
+          if (oldTime > timeCurrentWin) {
+            await updateWinnerAPI(Number(id), oldWins + 1, timeCurrentWin);
+          } else {
+            await updateWinnerAPI(Number(id), oldWins + 1, oldTime);
+          }
+          await removeWinnerOnTable(Number(id));
+        }
+        await createWinnerAPI(Number(id), timeCurrentWin);
+        await createWinCar({ id: Number(id), wins: 1, time: timeCurrentWin });
+        await createModalForWin(car?.name, timeCurrentWin);
+        setTimeout(() => {
+          removeModalForWin();
+        }, 3000);
       }
     });
   }

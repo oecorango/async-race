@@ -24,6 +24,7 @@
 .garage {
   user-select: none;
   & h2 {
+    color: $color-font;
     margin: 10px;
   }
 }
@@ -62,6 +63,7 @@
     display: inline-block;
     margin: 0 auto;
     padding: 0 20px;
+    color: $color-font;
   }
   & .track {
     display: flex;
@@ -85,21 +87,18 @@
     }
   }
 }
-// .car_animated {
-//   animation: 4s linear car_drive forwards;
-//   animation-play-state: running;
-//   transform: translateX(300px);
-//   &.car_pause {
-//     animation-play-state: paused;
-//   }
-// }
 
-// // @keyframes car_drive {
-// //   from {
-// //     transform: translateX(0px);
-// //   }
-
-// //   to {
-// //     transform: translateX(80em);
-// //   }
-// // }
+.wins {
+  background-color: #202020;
+  width: 40%;
+  border: $color-yellow-light solid 5px;
+  border-radius: 20px;
+  font-size: 2rem;
+  text-align: center;
+  vertical-align: middle;
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%, -60%);
+  color: #fff;
+}

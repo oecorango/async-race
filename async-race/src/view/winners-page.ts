@@ -14,6 +14,7 @@ export async function createWinCar(elem: Winners): Promise<void> {
     const parent = document.querySelector('.tbody');
 
     const row = document.createElement('tr');
+    row.dataset.car_win_id = ID.toString();
 
     const number = document.createElement('th');
     number.textContent = ROW.toString();
