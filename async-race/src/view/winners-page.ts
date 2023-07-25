@@ -6,7 +6,8 @@ import carImg from '../assets/car.gif';
 
 const NAME_HEADER_TABLE = ['Number', 'Car', 'Name', 'Wins', 'Best time'];
 
-async function createWinCar(elem: Winners): Promise<void> {
+let ROW = 1;
+export async function createWinCar(elem: Winners): Promise<void> {
   const ID = elem.id;
   const car = await getCarAPI(ID);
   if (car) {
@@ -15,7 +16,8 @@ async function createWinCar(elem: Winners): Promise<void> {
     const row = document.createElement('tr');
 
     const number = document.createElement('th');
-    number.textContent = '1';
+    number.textContent = ROW.toString();
+    ROW += 1;
 
     const imageTh = document.createElement('th');
     const imageCar = document.createElement('img');
@@ -30,7 +32,7 @@ async function createWinCar(elem: Winners): Promise<void> {
     wins.textContent = elem.wins.toString();
 
     const bestTime = document.createElement('th');
-    bestTime.textContent = elem.time.toString();
+    bestTime.textContent = elem.time.toFixed(2);
 
     row?.append(number, imageTh, name, wins, bestTime);
     parent?.append(row);

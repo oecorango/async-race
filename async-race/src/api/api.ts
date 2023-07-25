@@ -2,8 +2,8 @@ import { Car, DriveMode, OptionsStatus, Speed, Winners } from '../types/type';
 import { PATH_MAP, URL } from '../utils/constants';
 
 export const getCarsAPI = async (): Promise<Car[] | null> => {
+  const response = await fetch(`${URL}${PATH_MAP.garage}`);
   try {
-    const response = await fetch(`${URL}${PATH_MAP.garage}`);
     const data: Car[] = await response.json();
     return data;
   } catch (err) {
@@ -13,8 +13,8 @@ export const getCarsAPI = async (): Promise<Car[] | null> => {
 };
 
 export const getCarAPI = async (id: number): Promise<Car | null> => {
+  const response = await fetch(`${URL}${PATH_MAP.garage}/${id}`);
   try {
-    const response = await fetch(`${URL}${PATH_MAP.garage}/${id}`);
     const data: Car = await response.json();
     return data;
   } catch (err) {
@@ -24,8 +24,8 @@ export const getCarAPI = async (id: number): Promise<Car | null> => {
 };
 
 export const getCarsOnPageAPI = async (currentPage: number): Promise<Car[] | null> => {
+  const response = await fetch(`${URL}${PATH_MAP.garage}?_page=${currentPage}&_limit=7`);
   try {
-    const response = await fetch(`${URL}${PATH_MAP.garage}?_page=${currentPage}&_limit=7`);
     const data: Car[] = await response.json();
     return data;
   } catch (err) {
@@ -35,14 +35,15 @@ export const getCarsOnPageAPI = async (currentPage: number): Promise<Car[] | nul
 };
 
 export const createCarAPI = async (param: Car): Promise<Car | null> => {
+  const response = await fetch(`${URL}${PATH_MAP.garage}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(param),
+  });
+
   try {
-    const response = await fetch(`${URL}${PATH_MAP.garage}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(param),
-    });
     const data: Car = await response.json();
     return data;
   } catch (err) {
@@ -52,10 +53,10 @@ export const createCarAPI = async (param: Car): Promise<Car | null> => {
 };
 
 export const removeCarAPI = async (id: number): Promise<Car | null> => {
+  const response = await fetch(`${URL}${PATH_MAP.garage}/${id}`, {
+    method: 'DELETE',
+  });
   try {
-    const response = await fetch(`${URL}${PATH_MAP.garage}/${id}`, {
-      method: 'DELETE',
-    });
     const data: Car = await response.json();
     return data;
   } catch (err) {
@@ -65,14 +66,14 @@ export const removeCarAPI = async (id: number): Promise<Car | null> => {
 };
 
 export const editCarAPI = async (param: Car): Promise<Car | null> => {
+  const response = await fetch(`${URL}${PATH_MAP.garage}/${param.id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(param),
+  });
   try {
-    const response = await fetch(`${URL}${PATH_MAP.garage}/${param.id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(param),
-    });
     const data: Car = await response.json();
     return data;
   } catch (err) {
@@ -82,11 +83,11 @@ export const editCarAPI = async (param: Car): Promise<Car | null> => {
 };
 
 export const startCarAPI = async (id: number, param: OptionsStatus): Promise<number | null> => {
+  const response = await fetch(`${URL}${PATH_MAP.engine}?id=${id}&status=${param}`, {
+    method: 'PATCH',
+    body: JSON.stringify(param),
+  });
   try {
-    const response = await fetch(`${URL}${PATH_MAP.engine}?id=${id}&status=${param}`, {
-      method: 'PATCH',
-      body: JSON.stringify(param),
-    });
     const data: Speed = await response.json();
     const time = data.distance / data.velocity;
     return time;
@@ -97,27 +98,11 @@ export const startCarAPI = async (id: number, param: OptionsStatus): Promise<num
 };
 
 export async function driveCarAPI(id: number, param: OptionsStatus): Promise<DriveMode | null> {
+  const response = await fetch(`${URL}${PATH_MAP.engine}?id=${id}&status=${param}`, {
+    method: 'PATCH',
+    body: JSON.stringify(param),
+  });
   try {
-    const response = await fetch(`${URL}${PATH_MAP.engine}?id=${id}&status=${param}`, {
-      method: 'PATCH',
-      body: JSON.stringify(param),
-    });
-    if (response) {
-      const data: DriveMode = await response.json();
-      return data;
-    }
-  } catch (err) {
-    console.warn(err);
-  }
-  return null;
-}
-
-export async function stopCarAPI(id: number, param: OptionsStatus): Promise<DriveMode | null> {
-  try {
-    const response = await fetch(`${URL}${PATH_MAP.engine}?id=${id}&status=${param}`, {
-      method: 'PATCH',
-      body: JSON.stringify(param),
-    });
     const data: DriveMode = await response.json();
     return data;
   } catch (err) {
@@ -126,14 +111,28 @@ export async function stopCarAPI(id: number, param: OptionsStatus): Promise<Driv
   return null;
 }
 
-export async function driveAllCarAPI(cars: Car[], param: OptionsStatus): Promise<Response[] | null> {
+export async function stopCarAPI(id: number, param: OptionsStatus): Promise<DriveMode | null> {
+  const response = await fetch(`${URL}${PATH_MAP.engine}?id=${id}&status=${param}`, {
+    method: 'PATCH',
+    body: JSON.stringify(param),
+  });
   try {
-    const response = cars.map((car) =>
-      fetch(`${URL}${PATH_MAP.engine}?id=${car.id}&status=${param}`, {
-        method: 'PATCH',
-        body: JSON.stringify(param),
-      }),
-    );
+    const data: DriveMode = await response.json();
+    return data;
+  } catch (err) {
+    console.warn(err);
+  }
+  return null;
+}
+
+export async function startAllCarAPI(cars: Car[], param: OptionsStatus): Promise<Response[] | null> {
+  const response = cars.map((car) =>
+    fetch(`${URL}${PATH_MAP.engine}?id=${car.id}&status=${param}`, {
+      method: 'PATCH',
+      body: JSON.stringify(param),
+    }),
+  );
+  try {
     return await Promise.all(response);
   } catch (err) {
     console.warn(err);
@@ -141,34 +140,29 @@ export async function driveAllCarAPI(cars: Car[], param: OptionsStatus): Promise
   return null;
 }
 
-export async function createWinCarAPI(cars: Car[], param: OptionsStatus): Promise<Response[] | null> {
-  try {
-    const responses = cars.map(async (car) =>
-      fetch(`${URL}${PATH_MAP.engine}?id=${car.id}&status=${param}`, {
-        method: 'PATCH',
-        body: JSON.stringify(param),
-      }),
-    );
-    Promise.any(responses).then(() =>
-      fetch(`${URL}${PATH_MAP.winners}`, {
-        method: 'POST',
-        body: JSON.stringify(param),
-      }),
-    );
-  } catch (err) {
-    console.warn(err);
-  }
-  return null;
-}
-
-export async function getWinnersAPI(currentPage = 1): Promise<Winners[]> {
+export async function getWinnersAPI(currentPage = 1): Promise<Winners[] | null> {
   return fetch(`${URL}${PATH_MAP.winners}?_page=${currentPage}&_limit=10`).then(async (response) => {
     if (response.ok) {
       return response.json();
     }
-    const error = await response.json();
-    const err = new Error('Oops!');
-    err.message = error;
-    throw err;
+    return null;
   });
+}
+
+export async function createWinnerAPI(id: number, time: number, wins = 1): Promise<Winners | null> {
+  const param = { id, wins, time };
+  const response = await fetch(`${URL}${PATH_MAP.winners}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(param),
+  });
+  try {
+    const data: Winners = await response.json();
+    return data;
+  } catch (err) {
+    console.warn(err);
+  }
+  return null;
 }

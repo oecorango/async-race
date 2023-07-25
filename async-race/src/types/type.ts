@@ -28,5 +28,3 @@ export type Winners = {
   wins: number;
   time: number;
 };
-
-// export type OptionsWinners = '_page=' | '_limit=' | '_sort=' | '_order=';

@@ -1,6 +1,7 @@
-import { driveAllCarAPI, driveCarAPI, startCarAPI, stopCarAPI } from '../api/api';
-import { Car, OptionsStatus, Speed } from '../types/type';
-import { CADRES, MILLISECOND, OPTIONS_MAP, PATH_MAP, URL, WIGHT_CAR } from './constants';
+import { startAllCarAPI, driveCarAPI, startCarAPI, stopCarAPI, createWinnerAPI } from '../api/api';
+import { Car, Speed } from '../types/type';
+import { createWinCar } from '../view/winners-page';
+import { CADRES, MILLISECOND, OPTIONS_MAP, WIGHT_CAR } from './constants';
 
 // переделать эту функцию, т.к. значение перезаписывается и стопается не та машинка.
 let requestId: number | null = null;
@@ -57,35 +58,25 @@ export async function stopCar(id: number, buttons: NodeListOf<HTMLButtonElement>
   stopCarAPI(id, OPTIONS_MAP.stopped);
 }
 
-// export async function createWinCarAPI(cars: Car[], param: OptionsStatus): Promise<void> {
-//   cars.map(async (car) => {
-//     fetch(`${URL}${PATH_MAP.engine}?id=${car.id}&status=${param}`, {
-//       method: 'PATCH',
-//       body: JSON.stringify(param),
-//     })
-//       .then((data) => {
-//         if (data.status === 500) {
-//           if (requestId) cancelAnimationFrame(requestId);
-//           const err = new Error('Oops!');
-//         }
-//       })
-//       .catch((err) => console.warn(err));
-//   });
-// }
-
 export async function driveAllCars(cars: Car[], dist: number): Promise<void> {
-  const dataCars = await driveAllCarAPI(cars, OPTIONS_MAP.started);
+  const dataCars = await startAllCarAPI(cars, OPTIONS_MAP.started);
   if (dataCars) {
+    let timeWin = 0;
     dataCars?.map(async (response) => {
       const id = response.url.split('id=')[1].replace('&', ' ').split(' ')[0];
       const data: Speed = await response.json();
       const time = data.distance / data.velocity;
       animationCar(Number(id), dist, Number(time));
+
       const drive = await driveCarAPI(Number(id), OPTIONS_MAP.drive);
-      if (!drive && requestId) {
-        cancelAnimationFrame(requestId);
+      if (!drive) {
+        if (requestId) cancelAnimationFrame(requestId);
+      }
+      if (drive && timeWin === 0) {
+        timeWin = time / 1000;
+        createWinnerAPI(Number(id), timeWin);
+        createWinCar({ id: Number(id), wins: 1, time: timeWin });
       }
     });
   }
-  // await createWinCarAPI(cars, OPTIONS_MAP.drive);
 }
