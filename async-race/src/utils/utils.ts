@@ -85,7 +85,7 @@ export function changeNumberCarsInGarage(action: Action): void {
     if (action === 'add') newString = Number(number) + 1;
     if (action === 'add-100') newString = Number(number) + 100;
     if (action === 'remove') newString = Number(number) - 1;
-    carsInGarage.innerText = `Cars in garage #${newString}`;
+    carsInGarage.innerText = `Medusas in pool #${newString}`;
   }
 }
 

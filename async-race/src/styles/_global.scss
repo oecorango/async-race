@@ -1,6 +1,15 @@
+
+
+@font-face {
+	font-family: 'Spongeboy';
+	src: url('./assets/spongeboy.woff2');
+}
+
 html {
   background-color: $color-dark;
   box-sizing: border-box;
+  font-family: Spongeboy;
+  font-weight: 400;
 }
 
 body {

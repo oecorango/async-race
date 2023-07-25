@@ -48,6 +48,13 @@ module.exports = {
           filename: 'assets/image/[name][ext]',
         },
       },
+      {
+        test: /\.woff2?$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: 'assets/fonts/[name][ext]',
+        },
+      },
     ],
   },
   resolve: {
