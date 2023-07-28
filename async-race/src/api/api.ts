@@ -1,15 +1,10 @@
 import { Car, DriveMode, OptionsStatus, Speed, Winners } from '../types/type';
 import { PATH_MAP, URL } from '../utils/constants';
 
-/* И да, тут самое то надо было бы сделать через class это все,
-но понял это только тогда, когда код очень сильно увеличился, 
-а функции то по сути все одинаковые, но понял что переделывать - потратить много времени */
-
 export const getCarsAPI = async (): Promise<Car[] | null> => {
   const response = await fetch(`${URL}${PATH_MAP.garage}`);
   try {
-    const data: Car[] = await response.json();
-    return data;
+    return await response.json();
   } catch (err) {
     console.warn(err);
   }
@@ -19,8 +14,7 @@ export const getCarsAPI = async (): Promise<Car[] | null> => {
 export const getCarAPI = async (id: number): Promise<Car | null> => {
   const response = await fetch(`${URL}${PATH_MAP.garage}/${id}`);
   try {
-    const data: Car = await response.json();
-    return data;
+    return await response.json();
   } catch (err) {
     console.warn(err);
   }
@@ -30,8 +24,7 @@ export const getCarAPI = async (id: number): Promise<Car | null> => {
 export const getCarsOnPageAPI = async (currentPage: number): Promise<Car[] | null> => {
   const response = await fetch(`${URL}${PATH_MAP.garage}?_page=${currentPage}&_limit=7`);
   try {
-    const data: Car[] = await response.json();
-    return data;
+    return await response.json();
   } catch (err) {
     console.warn(err);
   }
@@ -48,8 +41,7 @@ export const createCarAPI = async (param: Car): Promise<Car | null> => {
   });
 
   try {
-    const data: Car = await response.json();
-    return data;
+    return await response.json();
   } catch (err) {
     console.warn(err);
   }
@@ -61,8 +53,7 @@ export const removeCarAPI = async (id: number): Promise<Car | null> => {
     method: 'DELETE',
   });
   try {
-    const data: Car = await response.json();
-    return data;
+    return await response.json();
   } catch (err) {
     console.warn(err);
   }
@@ -78,8 +69,7 @@ export const editCarAPI = async (param: Car): Promise<Car | null> => {
     body: JSON.stringify(param),
   });
   try {
-    const data: Car = await response.json();
-    return data;
+    return await response.json();
   } catch (err) {
     console.warn(err);
   }
@@ -107,8 +97,7 @@ export async function driveCarAPI(id: number, param: OptionsStatus): Promise<Dri
     body: JSON.stringify(param),
   });
   try {
-    const data: DriveMode = await response.json();
-    return data;
+    return await response.json();
   } catch (err) {
     console.warn(err);
   }
@@ -121,8 +110,7 @@ export async function stopCarAPI(id: number, param: OptionsStatus): Promise<Driv
     body: JSON.stringify(param),
   });
   try {
-    const data: DriveMode = await response.json();
-    return data;
+    return await response.json();
   } catch (err) {
     console.warn(err);
   }
@@ -163,8 +151,7 @@ export async function createWinnerAPI(id: number, time: number, wins = 1): Promi
     body: JSON.stringify(param),
   });
   try {
-    const data: Winners = await response.json();
-    return data;
+    return await response.json();
   } catch (err) {
     console.warn(err);
   }
@@ -174,8 +161,7 @@ export async function createWinnerAPI(id: number, time: number, wins = 1): Promi
 export async function getWinnerAPI(id: number): Promise<Winners | null> {
   const response = await fetch(`${URL}${PATH_MAP.winners}/${id}`);
   try {
-    const data: Winners = await response.json();
-    return data;
+    return await response.json();
   } catch (err) {
     console.warn(err);
   }
@@ -192,8 +178,7 @@ export async function updateWinnerAPI(id: number, wins: number, time: number): P
     body: JSON.stringify(param),
   });
   try {
-    const data: Winners = await response.json();
-    return data;
+    return await response.json();
   } catch (err) {
     console.warn(err);
   }
@@ -205,8 +190,7 @@ export const removeWinnerAPI = async (id: number): Promise<Winners | null> => {
     method: 'DELETE',
   });
   try {
-    const data: Winners = await response.json();
-    return data;
+    return await response.json();
   } catch (err) {
     console.warn(err);
   }

@@ -4,9 +4,8 @@ import { START_PAGE_GARAGE, WINNERS_ON_PAGE } from '../utils/constants';
 import { createButton, createElement } from '../utils/utils';
 import carImg from '../assets/car.gif';
 
-const NAME_HEADER_TABLE = ['Number', 'Car', 'Name', 'Wins', 'Best time'];
+const NAME_HEADER_TABLE = ['ID', 'Car', 'Name', 'Wins', 'Best time'];
 
-let ROW = 1;
 export async function createWinCar(elem: Winners): Promise<void> {
   const ID = elem.id;
   const car = await getCarAPI(ID);
@@ -16,9 +15,8 @@ export async function createWinCar(elem: Winners): Promise<void> {
     const row = document.createElement('tr');
     row.dataset.car_win_id = ID.toString();
 
-    const number = document.createElement('th');
-    number.textContent = ROW.toString();
-    ROW += 1;
+    const idCar = document.createElement('th');
+    idCar.textContent = ID.toString();
 
     const imageTh = document.createElement('th');
     const imageCar = document.createElement('img');
@@ -35,7 +33,7 @@ export async function createWinCar(elem: Winners): Promise<void> {
     const bestTime = document.createElement('th');
     bestTime.textContent = elem.time.toFixed(2);
 
-    row?.append(number, imageTh, name, wins, bestTime);
+    row?.append(idCar, imageTh, name, wins, bestTime);
     parent?.append(row);
   }
 }
