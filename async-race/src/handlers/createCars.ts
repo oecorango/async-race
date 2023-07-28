@@ -7,9 +7,8 @@ export async function createCars(cars: Car[] | Car, page: number): Promise<void>
   const garageCars = document.querySelector('.garage_cars');
   if (!garageCars) createElement('.garage', 'div', ['garage_cars']);
 
-  const currentPage = page;
-  const startIndexCar = (currentPage - 1) * 7;
-  const endIndexCar = startIndexCar + 7;
+  const startIndexCar = (page - 1) * CARS_ON_PAGE;
+  const endIndexCar = startIndexCar + CARS_ON_PAGE;
 
   arrayCars.slice(startIndexCar, endIndexCar).forEach((car) => {
     if (car.id) {
@@ -18,7 +17,6 @@ export async function createCars(cars: Car[] | Car, page: number): Promise<void>
   });
 }
 
-// объединить эту функцию с предыдущей
 export async function createOneCar(car: Car | null): Promise<void> {
   const currentCarsOnPage = document.querySelectorAll('.car').length;
   if (currentCarsOnPage < CARS_ON_PAGE) {
