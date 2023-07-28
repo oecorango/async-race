@@ -45,3 +45,5 @@ export const LAST_NAME = [
   'Phacellophoridae',
   'Ulmaridae',
 ];
+
+export const NUMBER_RANDOM_CARS = 100;

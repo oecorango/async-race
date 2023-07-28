@@ -1,5 +1,5 @@
 import { Action, Car, DataButtons } from '../types/type';
-import { START_PAGE_GARAGE } from './constants';
+import { FIRST_NAME, LAST_NAME, START_PAGE_GARAGE } from './constants';
 import { getCarsAPI } from '../api/api';
 import carImage from '../assets/car.gif';
 import finishImage from '../assets/finish.png';
@@ -149,4 +149,20 @@ export async function editCar(car: Car | null): Promise<void> {
 export async function removeWinnerOnTable(id: number): Promise<void> {
   const pageWinners = document.querySelector(`[data-car_win_id="${id}"]`);
   pageWinners?.replaceChildren();
+}
+
+export function createRandomName(): string {
+  const firsNameIndex = Math.round(Math.random() * FIRST_NAME.length);
+  const lastNameIndex = Math.round(Math.random() * LAST_NAME.length);
+
+  const fullName = `${FIRST_NAME[firsNameIndex]} ${LAST_NAME[lastNameIndex]}`;
+  return fullName;
+}
+
+export function createRandomColor(): string {
+  const randomColorRGB = [Math.random() * 255, Math.random() * 255, Math.random() * 255];
+  const colorRGB = `rgb(${Math.round(randomColorRGB[0])},
+                        ${Math.round(randomColorRGB[1])},
+                        ${Math.round(randomColorRGB[2])})`;
+  return colorRGB;
 }

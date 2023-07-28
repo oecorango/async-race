@@ -1,34 +1,32 @@
 import { Car } from '../types/type';
-import { FIRST_NAME, LAST_NAME } from '../utils/constants';
+import { NUMBER_RANDOM_CARS } from '../utils/constants';
+import { createRandomColor, createRandomName } from '../utils/utils';
 import { createCarAPI } from './api';
 
-export async function createCarParams(): Promise<Car | null> {
-  const nameCar: HTMLInputElement | null = document.querySelector('[data-id="name-car-to-create"]');
-  const colorCar: HTMLInputElement | null = document.querySelector('[data-id="color-car-to-create"]');
-  if (nameCar && colorCar) {
+let countCar = 1;
+export async function createNewCar(): Promise<Car | null> {
+  const name: HTMLInputElement | null = document.querySelector('[data-id="name-car-to-create"]');
+  const color: HTMLInputElement | null = document.querySelector('[data-id="color-car-to-create"]');
+  if (name && color) {
+    if (name.value.length === 0) {
+      name.value = `noname car ${countCar}`;
+      countCar += 1;
+    }
     const car = await createCarAPI({
-      name: nameCar.value,
-      color: colorCar.value,
+      name: name.value,
+      color: color.value,
     });
-    nameCar.value = '';
+    name.value = '';
     return car;
   }
   return null;
 }
 
-export async function createOneHangaredCarsParams(): Promise<void> {
-  for (let i = 0; i < 100; i += 1) {
-    const index = Math.floor(Math.random() * 10);
-    const index2 = Math.floor(Math.random() * 10);
-
-    const resName = `${FIRST_NAME[index]} ${LAST_NAME[index2]}`;
-
-    const colorCar = [Math.random() * 255, Math.random() * 255, Math.random() * 255];
-    const resColor = `rgb(${Math.floor(colorCar[0])},${Math.floor(colorCar[1])},${Math.floor(colorCar[2])})`;
-
+export async function createRandomCars(): Promise<void> {
+  for (let i = 0; i < NUMBER_RANDOM_CARS; i += 1) {
     createCarAPI({
-      name: resName,
-      color: resColor,
+      name: createRandomName(),
+      color: createRandomColor(),
     });
   }
 }
