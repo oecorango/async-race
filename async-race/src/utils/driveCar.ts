@@ -9,8 +9,8 @@ import {
   getCarAPI,
 } from '../api/api';
 import { Car, Speed } from '../types/type';
-import { createModalForWin, removeModalForWin } from '../view/create-modal-win';
-import { createWinCar } from '../view/winners-page';
+import { createModalForWin, removeModalForWin } from '../view/createModalWin';
+import { createWinCar } from '../view/winnersPage';
 import { CADRES, MILLISECOND, OPTIONS_MAP, WIGHT_CAR } from './constants';
 import { removeWinnerOnTable } from './utils';
 

@@ -1,11 +1,11 @@
-import { createCarParams, createOneHangaredCarsParams } from '../../api/create-car-api';
-import { createOneCar } from './create-cars';
-import { clickPrevNextBtn } from './open-next-prev-page';
-import { clickRemoveCarBtn } from './remove-car';
-import { clickSelectCarBtn } from './rename-car';
+import { createCarParams, createOneHangaredCarsParams } from '../../api/createCarApi';
+import { createOneCar } from './createCars';
+import { clickPrevNextBtn } from './openNextPrevPage';
+import { clickRemoveCarBtn } from './removeCar';
+import { clickSelectCarBtn } from './renameCar';
 import { changeNumberCarsInGarage, onOffNextButton, onOffPrevButton } from '../utils';
-import { clickStartStopCar } from './start-stop-car';
-import { startStopRace } from './start-race';
+import { clickStartStopCar } from './startStopCar';
+import { startStopRace } from './startRace';
 
 function clickGeneralBtn(): void {
   const buttons: NodeListOf<HTMLButtonElement> = document.querySelectorAll('[data-name="general"]');

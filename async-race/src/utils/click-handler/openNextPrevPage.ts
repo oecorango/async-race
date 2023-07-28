@@ -1,6 +1,6 @@
 import { getCarsAPI } from '../../api/api';
 import { currentPageGarage, onOffNextButton, onOffPrevButton, removeAllCars } from '../utils';
-import { createCars } from './create-cars';
+import { createCars } from './createCars';
 
 export function clickPrevNextBtn(): void {
   const buttons: NodeListOf<HTMLButtonElement> = document.querySelectorAll('[data-name="pagination"]');

@@ -1,7 +1,7 @@
 import './app.scss';
-import { clickHandler } from './utils/click-handler/click-handler';
-import { createGaragePage } from './view/garage-page';
-import { createWinnersPage } from './view/winners-page';
+import { clickHandler } from './utils/click-handler/clickHandler';
+import { createGaragePage } from './view/garagePage';
+import { createWinnersPage } from './view/winnersPage';
 
 async function start(): Promise<void> {
   try {

@@ -1,4 +1,4 @@
-import { driveCar, stopCar } from '../drive-car';
+import { driveCar, stopCar } from '../driveCar';
 import { WIDTH_GARAGE_PADDING } from '../constants';
 
 export function clickStartStopCar(): void {

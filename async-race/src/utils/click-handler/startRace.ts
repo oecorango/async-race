@@ -1,7 +1,7 @@
 import { getCarsOnPageAPI } from '../../api/api';
 import { Car } from '../../types/type';
 import { WIDTH_GARAGE_PADDING } from '../constants';
-import { disEnCarButtons, driveAllCars, stopCar } from '../drive-car';
+import { disEnCarButtons, driveAllCars, stopCar } from '../driveCar';
 import { currentPageGarage } from '../utils';
 
 async function raceCars(cars: Car[]): Promise<void> {
