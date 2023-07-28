@@ -1,5 +1,5 @@
+import { editCarAPI } from '../api/api';
 import { Car } from '../types/type';
-import { editCarAPI } from './api';
 
 export async function editCarParams(idCar: number): Promise<Car | null> {
   const nameCar: HTMLInputElement | null = document.querySelector('[data-id="name-car-to-edit"]');

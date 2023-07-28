@@ -1,6 +1,6 @@
-import { Car } from '../../types/type';
-import { CARS_ON_PAGE } from '../constants';
-import { createCar, createElement } from '../utils';
+import { Car } from '../types/type';
+import { CARS_ON_PAGE } from '../utils/constants';
+import { createCar, createElement } from '../utils/utils';
 
 export async function createCars(cars: Car[] | Car, page: number): Promise<void> {
   const arrayCars = Array.isArray(cars) ? [...cars] : [cars];

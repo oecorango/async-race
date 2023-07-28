@@ -1,9 +1,9 @@
-import { createNewCar, createRandomCars } from '../../api/createCarApi';
+import { createNewCar, createRandomCars } from '../view/createCar';
 import { createOneCar } from './createCars';
 import { clickPrevNextBtn } from './openNextPrevPage';
 import { clickRemoveCarBtn } from './removeCar';
 import { clickSelectCarBtn } from './renameCar';
-import { changeNumberCarsInGarage, onOffNextButton, onOffPrevButton } from '../utils';
+import { changeNumberCarsInGarage, onOffNextButton, onOffPrevButton } from '../utils/utils';
 import { clickStartStopCar } from './startStopCar';
 import { startStopRace } from './startRace';
 

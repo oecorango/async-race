@@ -1,5 +1,5 @@
 import './app.scss';
-import { clickHandler } from './utils/click-handler/clickHandler';
+import { clickHandler } from './handlers/clickHandler';
 import { createGaragePage } from './view/garagePage';
 import { createWinnersPage } from './view/winnersPage';
 

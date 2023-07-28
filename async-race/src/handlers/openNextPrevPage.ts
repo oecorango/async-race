@@ -1,5 +1,5 @@
-import { getCarsAPI } from '../../api/api';
-import { currentPageGarage, onOffNextButton, onOffPrevButton, removeAllCars } from '../utils';
+import { getCarsAPI } from '../api/api';
+import { currentPageGarage, onOffNextButton, onOffPrevButton, removeAllCars } from '../utils/utils';
 import { createCars } from './createCars';
 
 export function clickPrevNextBtn(): void {

@@ -1,5 +1,5 @@
 import { getCarsAPI } from '../api/api';
-import { createCars } from '../utils/click-handler/createCars';
+import { createCars } from '../handlers/createCars';
 import { CARS_ON_PAGE, START_PAGE_GARAGE } from '../utils/constants';
 import { createButton, createElement, createInput } from '../utils/utils';
 

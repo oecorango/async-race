@@ -1,7 +1,7 @@
 import { Car } from '../types/type';
 import { NUMBER_RANDOM_CARS } from '../utils/constants';
 import { createRandomColor, createRandomName } from '../utils/utils';
-import { createCarAPI } from './api';
+import { createCarAPI } from '../api/api';
 
 let countCar = 1;
 export async function createNewCar(): Promise<Car | null> {

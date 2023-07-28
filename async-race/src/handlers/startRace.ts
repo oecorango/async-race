@@ -1,8 +1,8 @@
-import { getCarsOnPageAPI } from '../../api/api';
-import { Car } from '../../types/type';
-import { WIDTH_GARAGE_PADDING } from '../constants';
-import { disEnCarButtons, driveAllCars, stopCar } from '../driveCar';
-import { currentPageGarage } from '../utils';
+import { getCarsOnPageAPI } from '../api/api';
+import { Car } from '../types/type';
+import { WIDTH_GARAGE_PADDING } from '../utils/constants';
+import { disEnCarButtons, driveAllCars, stopCar } from '../utils/driveCar';
+import { currentPageGarage } from '../utils/utils';
 
 async function raceCars(cars: Car[]): Promise<void> {
   const garage: HTMLElement | null = document.querySelector('.garage_cars');
