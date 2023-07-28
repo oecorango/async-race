@@ -14,7 +14,13 @@ function clickGeneralBtn(): void {
       const section = document.querySelectorAll('section');
       section.forEach((e) => e.classList.toggle('hidden'));
 
-      buttons.forEach((btn) => (btn.disabled ? (btn.disabled = false) : (btn.disabled = true)));
+      buttons.forEach((btn) => {
+        if (btn.getAttribute('disabled')) {
+          btn.removeAttribute('disabled');
+        } else {
+          btn.setAttribute('disabled', '');
+        }
+      });
     });
   });
 }
@@ -23,7 +29,8 @@ function clickCreateCarBtn(): void {
   const button: HTMLButtonElement | null = document.querySelector('[data-name="create"]');
   if (button) {
     button.addEventListener('click', async () => {
-      createNewCar().then((car) => createOneCar(car));
+      const createCar = await createNewCar();
+      await createOneCar(createCar);
       changeNumberCarsInGarage('add');
       onOffPrevButton();
       await onOffNextButton();
