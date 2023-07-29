@@ -4,7 +4,7 @@ import { editCarParams } from '../view/editCar';
 let carID = 1;
 
 function edit(): void {
-  editCarParams(Number(carID)).then((car) => editCar(car));
+  editCarParams(carID).then((car) => editCar(car));
   disabledEditCarElement();
 }
 
