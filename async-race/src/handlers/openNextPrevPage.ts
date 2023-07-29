@@ -7,20 +7,15 @@ export function clickPrevNextBtn(): void {
   buttons.forEach((button) => {
     button.addEventListener('click', async () => {
       const currentPage = currentPageGarage();
-      const prevPage = currentPage - 1;
-      const nextPage = currentPage + 1;
-      const cerTextPage: HTMLElement | null = document.querySelector('.current_garage-page');
+      const currentNumberPage: HTMLElement | null = document.querySelector('.current_garage-page');
 
       const carInGarage = await getCarsAPI();
       await removeAllCars();
       if (carInGarage) {
         if (button.dataset.id === 'prev') {
-          await createCars(carInGarage, prevPage);
-          if (cerTextPage) cerTextPage.innerText = `Page #${prevPage}`;
-        }
-        if (button.dataset.id === 'next') {
-          await createCars(carInGarage, nextPage);
-          if (cerTextPage) cerTextPage.innerText = `Page #${nextPage}`;
+          const newPage = button.dataset.id === 'prev' ? currentPage - 1 : currentPage + 1;
+          await createCars(carInGarage, newPage);
+          if (currentNumberPage) currentNumberPage.innerText = `Page #${newPage}`;
         }
       }
       onOffPrevButton();
