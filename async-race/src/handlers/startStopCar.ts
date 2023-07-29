@@ -11,10 +11,12 @@ export function clickStartStopCar(): void {
       startStopButtons.forEach((startStopButton) => {
         if (startStopButton === event.target && startStopButton.dataset.name === 'start-car') {
           const carID = startStopButton.dataset.id;
-          const buttonsStartStop: NodeListOf<HTMLButtonElement> = garage.querySelectorAll(`[data-id="${carID}"]`);
-          const distance = garage.offsetWidth - WIDTH_GARAGE_PADDING;
+          if (carID) {
+            const buttonsStartStop: NodeListOf<HTMLButtonElement> = garage.querySelectorAll(`[data-id="${carID}"]`);
+            const distance = garage.offsetWidth - WIDTH_GARAGE_PADDING;
 
-          driveCar(Number(carID), distance, buttonsStartStop);
+            driveCar(Number(carID), distance, buttonsStartStop);
+          }
         }
       });
 
@@ -22,9 +24,11 @@ export function clickStartStopCar(): void {
       storButtons.forEach((stopButton) => {
         if (stopButton === event.target) {
           const carID = stopButton.dataset.id;
-          const buttonsStartStop: NodeListOf<HTMLButtonElement> = garage.querySelectorAll(`[data-id="${carID}"]`);
+          if (carID) {
+            const buttonsStartStop: NodeListOf<HTMLButtonElement> = garage.querySelectorAll(`[data-id="${carID}"]`);
 
-          stopCar(Number(carID), buttonsStartStop);
+            stopCar(Number(carID), buttonsStartStop);
+          }
         }
       });
     });
