@@ -23,7 +23,7 @@ export function createButton(parent: string, textButton: string, dataParam?: Dat
     button.dataset.name = dataParam.name;
   }
 
-  if (disabled) button.disabled = true;
+  if (disabled) button.setAttribute('disabled', 'disabled');
   parentElement?.append(button);
 }
 

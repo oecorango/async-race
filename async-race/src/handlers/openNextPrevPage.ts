@@ -12,14 +12,14 @@ export function clickPrevNextBtn(): void {
       const carInGarage = await getCarsAPI();
       await removeAllCars();
       if (carInGarage) {
-        if (button.dataset.id === 'prev') {
-          const newPage = button.dataset.id === 'prev' ? currentPage - 1 : currentPage + 1;
-          await createCars(carInGarage, newPage);
-          if (currentNumberPage) currentNumberPage.innerText = `Page #${newPage}`;
-        }
+        const newPage = button.dataset.id === 'prev' ? currentPage - 1 : currentPage + 1;
+        console.log(newPage);
+        await createCars(carInGarage, newPage);
+        if (currentNumberPage) currentNumberPage.innerText = `Page #${newPage}`;
       }
+
       onOffPrevButton();
-      await onOffNextButton();
+      onOffNextButton();
     });
   });
 }

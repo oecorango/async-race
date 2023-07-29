@@ -15,10 +15,11 @@ function clickGeneralBtn(): void {
       section.forEach((e) => e.classList.toggle('hidden'));
 
       buttons.forEach((btn) => {
+        console.log(btn.getAttribute('disabled'));
         if (btn.getAttribute('disabled')) {
           btn.removeAttribute('disabled');
         } else {
-          btn.setAttribute('disabled', '');
+          btn.setAttribute('disabled', 'disabled');
         }
       });
     });
