@@ -1,6 +1,3 @@
-export const START_PAGE_GARAGE = 1;
-export const CARS_ON_PAGE = 7;
-export const WINNERS_ON_PAGE = 10;
 export const WIDTH_GARAGE_PADDING = 150;
 export const MILLISECOND_TO_SECOND = 1000;
 export const FPS = 60;

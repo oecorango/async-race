@@ -1,5 +1,5 @@
+import { CARS_ON_PAGE } from '../constants/api';
 import { Car } from '../types/type';
-import { CARS_ON_PAGE } from '../constants/common';
 import { createCarElements, createElement } from '../utils/utils';
 
 export async function createCars(cars: Car[] | Car, page: number): Promise<void> {

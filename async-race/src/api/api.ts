@@ -1,8 +1,9 @@
-import { URL_API, PATH_MAP } from '../constants/routes';
+import { CARS_ON_PAGE } from '../constants/api';
+import { URL_ENGINE, URL_GARAGE, URL_WINNERS } from '../constants/routes';
 import { Car, DriveMode, OptionsStatus, Speed, Winners } from '../types/type';
 
 export const getCarsAPI = async (): Promise<Car[] | null> => {
-  const response = await fetch(`${URL_API}${PATH_MAP.garage}`);
+  const response = await fetch(`${URL_GARAGE}`);
   try {
     return await response.json();
   } catch (err) {
@@ -12,7 +13,7 @@ export const getCarsAPI = async (): Promise<Car[] | null> => {
 };
 
 export const getCarAPI = async (id: number): Promise<Car | null> => {
-  const response = await fetch(`${URL_API}${PATH_MAP.garage}/${id}`);
+  const response = await fetch(`${URL_GARAGE}${id}`);
   try {
     return await response.json();
   } catch (err) {
@@ -22,7 +23,7 @@ export const getCarAPI = async (id: number): Promise<Car | null> => {
 };
 
 export const getCarsOnPageAPI = async (currentPage: number): Promise<Car[] | null> => {
-  const response = await fetch(`${URL_API}${PATH_MAP.garage}?_page=${currentPage}&_limit=7`);
+  const response = await fetch(`${URL_GARAGE}?_page=${currentPage}&_limit=${CARS_ON_PAGE}`);
   try {
     return await response.json();
   } catch (err) {
@@ -32,7 +33,7 @@ export const getCarsOnPageAPI = async (currentPage: number): Promise<Car[] | nul
 };
 
 export const createCarAPI = async (param: Car): Promise<Car | null> => {
-  const response = await fetch(`${URL_API}${PATH_MAP.garage}`, {
+  const response = await fetch(`${URL_GARAGE}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -49,7 +50,7 @@ export const createCarAPI = async (param: Car): Promise<Car | null> => {
 };
 
 export const removeCarAPI = async (id: number): Promise<Car | null> => {
-  const response = await fetch(`${URL_API}${PATH_MAP.garage}/${id}`, {
+  const response = await fetch(`${URL_GARAGE}${id}`, {
     method: 'DELETE',
   });
   try {
@@ -61,7 +62,7 @@ export const removeCarAPI = async (id: number): Promise<Car | null> => {
 };
 
 export const editCarAPI = async (param: Car): Promise<Car | null> => {
-  const response = await fetch(`${URL_API}${PATH_MAP.garage}/${param.id}`, {
+  const response = await fetch(`${URL_GARAGE}${param.id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -77,7 +78,7 @@ export const editCarAPI = async (param: Car): Promise<Car | null> => {
 };
 
 export const startCarAPI = async (id: number, param: OptionsStatus): Promise<number | null> => {
-  const response = await fetch(`${URL_API}${PATH_MAP.engine}?id=${id}&status=${param}`, {
+  const response = await fetch(`${URL_ENGINE}?id=${id}&status=${param}`, {
     method: 'PATCH',
     body: JSON.stringify(param),
   });
@@ -92,7 +93,7 @@ export const startCarAPI = async (id: number, param: OptionsStatus): Promise<num
 };
 
 export async function driveCarAPI(id: number, param: OptionsStatus): Promise<DriveMode | null> {
-  const response = await fetch(`${URL_API}${PATH_MAP.engine}?id=${id}&status=${param}`, {
+  const response = await fetch(`${URL_ENGINE}?id=${id}&status=${param}`, {
     method: 'PATCH',
     body: JSON.stringify(param),
   });
@@ -105,7 +106,7 @@ export async function driveCarAPI(id: number, param: OptionsStatus): Promise<Dri
 }
 
 export async function stopCarAPI(id: number, param: OptionsStatus): Promise<DriveMode | null> {
-  const response = await fetch(`${URL_API}${PATH_MAP.engine}?id=${id}&status=${param}`, {
+  const response = await fetch(`${URL_ENGINE}?id=${id}&status=${param}`, {
     method: 'PATCH',
     body: JSON.stringify(param),
   });
@@ -119,7 +120,7 @@ export async function stopCarAPI(id: number, param: OptionsStatus): Promise<Driv
 
 export async function startAllCarAPI(cars: Car[], param: OptionsStatus): Promise<Response[] | null> {
   const response = cars.map((car) =>
-    fetch(`${URL_API}${PATH_MAP.engine}?id=${car.id}&status=${param}`, {
+    fetch(`${URL_ENGINE}?id=${car.id}&status=${param}`, {
       method: 'PATCH',
       body: JSON.stringify(param),
     }),
@@ -133,7 +134,7 @@ export async function startAllCarAPI(cars: Car[], param: OptionsStatus): Promise
 }
 
 export async function getWinnersAPI(currentPage = 1): Promise<Winners[] | null> {
-  return fetch(`${URL_API}${PATH_MAP.winners}?_page=${currentPage}&_limit=10`).then(async (response) => {
+  return fetch(`${URL_WINNERS}?_page=${currentPage}&_limit=10`).then(async (response) => {
     if (response.ok) {
       return response.json();
     }
@@ -143,7 +144,7 @@ export async function getWinnersAPI(currentPage = 1): Promise<Winners[] | null> 
 
 export async function createWinnerAPI(id: number, time: number, wins = 1): Promise<Winners | null> {
   const param = { id, wins, time };
-  const response = await fetch(`${URL_API}${PATH_MAP.winners}`, {
+  const response = await fetch(`${URL_WINNERS}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -159,7 +160,7 @@ export async function createWinnerAPI(id: number, time: number, wins = 1): Promi
 }
 
 export async function getWinnerAPI(id: number): Promise<Winners | null> {
-  const response = await fetch(`${URL_API}${PATH_MAP.winners}/${id}`);
+  const response = await fetch(`${URL_WINNERS}${id}`);
   try {
     return await response.json();
   } catch (err) {
@@ -170,7 +171,7 @@ export async function getWinnerAPI(id: number): Promise<Winners | null> {
 
 export async function updateWinnerAPI(id: number, wins: number, time: number): Promise<Winners | null> {
   const param = { wins, time };
-  const response = await fetch(`${URL_API}${PATH_MAP.winners}/${id}`, {
+  const response = await fetch(`${URL_WINNERS}${id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -186,7 +187,7 @@ export async function updateWinnerAPI(id: number, wins: number, time: number): P
 }
 
 export const removeWinnerAPI = async (id: number): Promise<Winners | null> => {
-  const response = await fetch(`${URL_API}${PATH_MAP.winners}/${id}`, {
+  const response = await fetch(`${URL_WINNERS}${id}`, {
     method: 'DELETE',
   });
   try {

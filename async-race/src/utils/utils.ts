@@ -1,8 +1,9 @@
 import { Action, Car, DataButtons } from '../types/type';
-import { FIRST_NAME, LAST_NAME, START_PAGE_GARAGE } from '../constants/common';
+import { FIRST_NAME, LAST_NAME } from '../constants/common';
 import { getCarsAPI } from '../api/api';
 import carImage from '../assets/car.gif';
 import finishImage from '../assets/finish.png';
+import { START_PAGE_GARAGE } from '../constants/api';
 
 export function createElement(parent: string, tag: string, className: string[], text?: string, dataId?: string): void {
   const parentElement = document.querySelector(parent);

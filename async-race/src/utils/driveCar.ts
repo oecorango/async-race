@@ -13,7 +13,7 @@ import { createModalForWin, removeModalForWin } from '../view/createModalWin';
 import { createWinCar } from '../view/winnersPage';
 import { FPS, MILLISECOND_TO_SECOND, WIDTH_CAR } from '../constants/common';
 import { removeWinnerOnTable } from './utils';
-import { OPTIONS_MAP } from '../constants/routes';
+import { OPTIONS_MAP } from '../constants/api';
 
 let requestId: number | null = null;
 
