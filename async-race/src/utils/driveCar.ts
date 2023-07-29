@@ -11,24 +11,16 @@ import {
 import { Car, Speed } from '../types/type';
 import { createModalForWin, removeModalForWin } from '../view/createModalWin';
 import { createWinCar } from '../view/winnersPage';
-import { CADRES, MILLISECOND, OPTIONS_MAP, WIGHT_CAR } from './constants';
+import { FPS, MILLISECOND_TO_SECOND, OPTIONS_MAP, WIDTH_CAR } from './constants';
 import { removeWinnerOnTable } from './utils';
-
-/*  так и не смог придумать как переделать данную функцию, т.к при запуске множества анимаций
-    requestId перезаписывается, а вызовы анимаций идут не последовательно, т.к сервер какие-то
-    запросы обрабатывает быстрее другие, медленее. В итоге cancelAnimationFrame прерывает не ту
-    анимацию.
-    Пытался написать анимацию через css, но что то не придумал как у @keyframes через js менять начальные
-    и конечные позиции
-*/
 
 let requestId: number | null = null;
 
 function animationCar(carId: number, endX: number, time: number): void {
   const car: HTMLElement | null = document.querySelector(`[data-id="image-${carId}"]`);
   if (car) {
-    let currentX = car.offsetLeft - WIGHT_CAR;
-    const framesCurrent = (time / MILLISECOND) * CADRES;
+    let currentX = car.offsetLeft - WIDTH_CAR;
+    const framesCurrent = (time / MILLISECOND_TO_SECOND) * FPS;
     const dX = (endX - car.offsetLeft) / framesCurrent;
 
     const tick = (): number => {
@@ -51,11 +43,7 @@ function returnCarsOnStart(carId: number): void {
 export async function disEnCarButtons(button: NodeListOf<HTMLButtonElement>): Promise<void> {
   button.forEach((btn) => {
     const carBtn = btn;
-    if (btn.disabled) {
-      carBtn.disabled = false;
-    } else {
-      carBtn.disabled = true;
-    }
+    carBtn.disabled = !carBtn.disabled;
   });
 }
 
@@ -94,7 +82,7 @@ export async function driveAllCars(cars: Car[], dist: number): Promise<void> {
         if (requestId) cancelAnimationFrame(requestId);
       }
       if (drive && timeCurrentWin === 0 && car) {
-        timeCurrentWin = time / MILLISECOND;
+        timeCurrentWin = time / MILLISECOND_TO_SECOND;
 
         const oldWinner = await getWinnerAPI(Number(id));
         if (oldWinner) {
