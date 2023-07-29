@@ -1,6 +1,6 @@
 import { Car } from '../types/type';
 import { CARS_ON_PAGE } from '../utils/constants';
-import { createCar, createElement } from '../utils/utils';
+import { createCarElements, createElement } from '../utils/utils';
 
 export async function createCars(cars: Car[] | Car, page: number): Promise<void> {
   const arrayCars = Array.isArray(cars) ? [...cars] : [cars];
@@ -12,7 +12,7 @@ export async function createCars(cars: Car[] | Car, page: number): Promise<void>
 
   arrayCars.slice(startIndexCar, endIndexCar).forEach((car) => {
     if (car.id) {
-      createCar(car.id, car.name, car.color);
+      createCarElements(car.id, car.name, car.color);
     }
   });
 }
@@ -21,7 +21,7 @@ export async function createOneCar(car: Car | null): Promise<void> {
   const currentCarsOnPage = document.querySelectorAll('.car').length;
   if (currentCarsOnPage < CARS_ON_PAGE) {
     if (car && car.id) {
-      createCar(car.id, car.name, car.color);
+      createCarElements(car.id, car.name, car.color);
     }
   }
 }

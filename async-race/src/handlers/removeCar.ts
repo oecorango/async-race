@@ -1,5 +1,5 @@
 import { removeCarAPI, removeWinnerAPI } from '../api/api';
-import { changeNumberCarsInGarage, removeOneCar } from '../utils/utils';
+import { changeNumberCarsInGarage, removeOneCarElements } from '../utils/utils';
 
 export function clickRemoveCarBtn(): void {
   const garage = document.querySelector('.garage_cars');
@@ -12,7 +12,7 @@ export function clickRemoveCarBtn(): void {
           if (idCar) {
             removeCarAPI(Number(idCar));
             removeWinnerAPI(Number(idCar));
-            removeOneCar(Number(idCar));
+            removeOneCarElements(Number(idCar));
             changeNumberCarsInGarage('remove');
           }
         }

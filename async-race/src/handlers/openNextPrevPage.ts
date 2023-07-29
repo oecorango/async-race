@@ -1,5 +1,5 @@
 import { getCarsAPI } from '../api/api';
-import { currentPageGarage, onOffNextButton, onOffPrevButton, removeAllCars } from '../utils/utils';
+import { currentPageGarage, onOffNextButton, onOffPrevButton, removeAllCarsElements } from '../utils/utils';
 import { createCars } from './createCars';
 
 export function clickPrevNextBtn(): void {
@@ -10,7 +10,7 @@ export function clickPrevNextBtn(): void {
       const currentNumberPage: HTMLElement | null = document.querySelector('.current_garage-page');
 
       const carInGarage = await getCarsAPI();
-      await removeAllCars();
+      await removeAllCarsElements();
       if (carInGarage) {
         const newPage = button.dataset.id === 'prev' ? currentPage - 1 : currentPage + 1;
         console.log(newPage);

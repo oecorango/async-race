@@ -46,7 +46,7 @@ export function createImage(parent: string, path: string, color?: string, name?:
   parentElement?.append(img);
 }
 
-export function createCar(id: number, name: string, color: string): void {
+export function createCarElements(id: number, name: string, color: string): void {
   createElement('.garage_cars', 'div', ['car', `car_${id}`]);
   createElement(`.car_${id}`, 'div', ['option', `option-${id}`]);
   createButton(`.option-${id}`, 'SELECT', { name: 'select', id: `${id}` });
@@ -67,12 +67,12 @@ export function currentPageGarage(): number {
   return Number(numberOfPage);
 }
 
-export async function removeAllCars(): Promise<void> {
+export async function removeAllCarsElements(): Promise<void> {
   const carsInGarage = document.querySelector('.garage_cars');
   carsInGarage?.replaceChildren();
 }
 
-export function removeOneCar(idCar: number): void {
+export function removeOneCarElements(idCar: number): void {
   const car = document.querySelector(`.car_${idCar}`);
   car?.remove();
 }
