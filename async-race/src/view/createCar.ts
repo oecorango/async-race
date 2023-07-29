@@ -1,5 +1,5 @@
 import { Car } from '../types/type';
-import { NUMBER_RANDOM_CARS } from '../utils/constants';
+import { NUMBER_RANDOM_CARS } from '../constants/common';
 import { createRandomColor, createRandomName } from '../utils/utils';
 import { createCarAPI } from '../api/api';
 

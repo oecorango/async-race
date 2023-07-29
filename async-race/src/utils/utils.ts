@@ -1,5 +1,5 @@
 import { Action, Car, DataButtons } from '../types/type';
-import { FIRST_NAME, LAST_NAME, START_PAGE_GARAGE } from './constants';
+import { FIRST_NAME, LAST_NAME, START_PAGE_GARAGE } from '../constants/common';
 import { getCarsAPI } from '../api/api';
 import carImage from '../assets/car.gif';
 import finishImage from '../assets/finish.png';

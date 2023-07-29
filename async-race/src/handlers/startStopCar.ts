@@ -1,5 +1,5 @@
 import { driveCar, stopCar } from '../utils/driveCar';
-import { WIDTH_GARAGE_PADDING } from '../utils/constants';
+import { WIDTH_GARAGE_PADDING } from '../constants/common';
 
 export function clickStartStopCar(): void {
   const garage: HTMLElement | null = document.querySelector('.garage_cars');

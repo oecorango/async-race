@@ -1,6 +1,6 @@
 import { getCarsOnPageAPI } from '../api/api';
 import { Car } from '../types/type';
-import { WIDTH_GARAGE_PADDING } from '../utils/constants';
+import { WIDTH_GARAGE_PADDING } from '../constants/common';
 import { disEnCarButtons, driveAllCars, stopCar } from '../utils/driveCar';
 import { currentPageGarage } from '../utils/utils';
 

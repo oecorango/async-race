@@ -1,6 +1,6 @@
 import { getCarAPI, getWinnersAPI } from '../api/api';
 import { Winners } from '../types/type';
-import { NAME_HEADER_TABLE, START_PAGE_GARAGE, WINNERS_ON_PAGE } from '../utils/constants';
+import { NAME_HEADER_TABLE, START_PAGE_GARAGE, WINNERS_ON_PAGE } from '../constants/common';
 import { createButton, createElement } from '../utils/utils';
 import carImg from '../assets/car.gif';
 

@@ -11,8 +11,9 @@ import {
 import { Car, Speed } from '../types/type';
 import { createModalForWin, removeModalForWin } from '../view/createModalWin';
 import { createWinCar } from '../view/winnersPage';
-import { FPS, MILLISECOND_TO_SECOND, OPTIONS_MAP, WIDTH_CAR } from './constants';
+import { FPS, MILLISECOND_TO_SECOND, WIDTH_CAR } from '../constants/common';
 import { removeWinnerOnTable } from './utils';
+import { OPTIONS_MAP } from '../constants/routes';
 
 let requestId: number | null = null;
 
