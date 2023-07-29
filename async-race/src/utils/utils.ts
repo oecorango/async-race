@@ -67,7 +67,7 @@ export function currentPageGarage(): number {
   return Number(numberOfPage);
 }
 
-export async function removeAllCarsElements(): Promise<void> {
+export function removeAllCarsElements(): void {
   const carsInGarage = document.querySelector('.garage_cars');
   carsInGarage?.replaceChildren();
 }
@@ -146,7 +146,7 @@ export async function editCar(car: Car | null): Promise<void> {
   }
 }
 
-export async function removeWinnerOnTable(id: number): Promise<void> {
+export function removeWinnerOnTable(id: number): void {
   const pageWinners = document.querySelector(`[data-car_win_id="${id}"]`);
   pageWinners?.replaceChildren();
 }

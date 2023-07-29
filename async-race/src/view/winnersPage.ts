@@ -1,10 +1,8 @@
 import { getCarAPI, getWinnersAPI } from '../api/api';
 import { Winners } from '../types/type';
-import { START_PAGE_GARAGE, WINNERS_ON_PAGE } from '../utils/constants';
+import { NAME_HEADER_TABLE, START_PAGE_GARAGE, WINNERS_ON_PAGE } from '../utils/constants';
 import { createButton, createElement } from '../utils/utils';
 import carImg from '../assets/car.gif';
-
-const NAME_HEADER_TABLE = ['ID', 'Car', 'Name', 'Wins', 'Best time'];
 
 export async function createWinCar(elem: Winners): Promise<void> {
   const ID = elem.id;

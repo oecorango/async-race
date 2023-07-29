@@ -47,3 +47,4 @@ export const LAST_NAME = [
 ];
 
 export const NUMBER_RANDOM_CARS = 100;
+export const NAME_HEADER_TABLE = ['ID', 'Car', 'Name', 'Wins', 'Best time'];
