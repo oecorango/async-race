@@ -13,7 +13,6 @@ export function clickPrevNextBtn(): void {
       await removeAllCarsElements();
       if (carInGarage) {
         const newPage = button.dataset.id === 'prev' ? currentPage - 1 : currentPage + 1;
-        console.log(newPage);
         await createCars(carInGarage, newPage);
         if (currentNumberPage) currentNumberPage.innerText = `Page #${newPage}`;
       }

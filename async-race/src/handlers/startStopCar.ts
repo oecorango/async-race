@@ -6,10 +6,10 @@ export function clickStartStopCar(): void {
   if (garage) {
     garage.addEventListener('click', (event) => {
       const startStopButtons: NodeListOf<HTMLButtonElement> = garage.querySelectorAll(
-        '[data-name="a"], [data-name="b"]',
+        '[data-name="start-car"], [data-name="stop-car"]',
       );
       startStopButtons.forEach((startStopButton) => {
-        if (startStopButton === event.target && startStopButton.dataset.name === 'a') {
+        if (startStopButton === event.target && startStopButton.dataset.name === 'start-car') {
           const carID = startStopButton.dataset.id;
           const buttonsStartStop: NodeListOf<HTMLButtonElement> = garage.querySelectorAll(`[data-id="${carID}"]`);
           const distance = garage.offsetWidth - WIDTH_GARAGE_PADDING;
@@ -18,7 +18,7 @@ export function clickStartStopCar(): void {
         }
       });
 
-      const storButtons: NodeListOf<HTMLButtonElement> = garage.querySelectorAll('[data-name="b"]');
+      const storButtons: NodeListOf<HTMLButtonElement> = garage.querySelectorAll('[data-name="stop-car"]');
       storButtons.forEach((stopButton) => {
         if (stopButton === event.target) {
           const carID = stopButton.dataset.id;

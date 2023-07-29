@@ -54,8 +54,8 @@ export function createCarElements(id: number, name: string, color: string): void
   createElement(`.option-${id}`, 'h3', [], `${name}`, `text-${id}`);
   createElement(`.car_${id}`, 'div', ['track', `track-${id}`]);
   createElement(`.track-${id}`, 'div', [`car_motor-${id}`]);
-  createButton(`.car_motor-${id}`, 'A', { name: 'a', id: `${id}` });
-  createButton(`.car_motor-${id}`, 'B', { name: 'b', id: `${id}` }, 'disabled');
+  createButton(`.car_motor-${id}`, 'A', { name: 'start-car', id: `${id}` });
+  createButton(`.car_motor-${id}`, 'B', { name: 'stop-car', id: `${id}` }, 'disabled');
   createImage(`.car_motor-${id}`, carImage, `${color}`, '', `image-${id}`);
   createImage(`.track-${id}`, finishImage, '', 'finish');
 }
