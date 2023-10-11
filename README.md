@@ -4,6 +4,9 @@
 
 https://github.com/rolling-scopes-school/tasks/blob/master/tasks/async-race.md
 
+## Deploy
+https://oecorango.github.io/async-rase/
+
 ## Technology Stack
 
 В учебном проекте используется слудующий стрек технологий:
