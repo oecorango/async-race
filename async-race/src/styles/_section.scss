@@ -1,0 +1,23 @@
+.garage,
+.winners {
+  display: flex;
+  flex-direction: column;
+  background-image: url(./assets/back.png);
+  &.hidden {
+    display: none;
+  }
+}
+
+.winners {
+  padding: 0 10px;
+  height: 800px;
+}
+
+.pagination_button {
+  background-color: $color-dark;
+  padding-top: 10px;
+  & button {
+    width: 150px;
+    margin-right: 20px;
+  }
+}

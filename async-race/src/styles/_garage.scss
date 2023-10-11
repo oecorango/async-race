@@ -1,0 +1,104 @@
+.create_car, 
+.edit_car,
+.race {
+  display: flex;
+  align-items: center;
+  & button {
+    width: 140px;
+  }
+  > * {
+    margin: 2px 5px;
+    border-radius: 5px;
+  }
+}
+
+.race {
+  & button {
+    width: 110px;
+  }
+  & :last-child {
+    width: 175px;
+  }
+}
+
+.garage {
+  user-select: none;
+  & h2 {
+    color: $color-font;
+    margin: 10px;
+  }
+}
+
+.garage_cars {
+  margin: 0 5px;
+  & button {
+    border-radius: 5px;
+    margin: 0 5px;
+    color: $color-light;
+    background-color: $color-yellow-light;
+    &:disabled {
+      background-color: $color-blue;
+    }
+  };
+}
+
+.car {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 2px dashed;
+  margin-bottom: 5px;
+  align-items: flex-start;
+  justify-content: center;
+  &.hidden {
+    display: none;
+  }
+  & img {
+    height: 50px;
+    width: 50px;
+  }
+  & button {
+    height: 22px;
+  }
+  & h3 {
+    display: inline-block;
+    margin: 0 auto;
+    padding: 0 20px;
+    color: $color-font;
+  }
+  & .track {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+.finish {
+  padding-right: 80px;
+}
+
+.pagination_button {
+  & button {
+    border-radius: 5px;
+    margin: 0 5px;
+    color: $color-light;
+    background-color: $color-yellow-light;
+    &:disabled {
+      background-color: $color-blue;
+    }
+  }
+}
+
+.wins {
+  background-color: #202020;
+  width: 40%;
+  border: $color-yellow-light solid 5px;
+  border-radius: 20px;
+  font-size: 2rem;
+  text-align: center;
+  vertical-align: middle;
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%, -60%);
+  color: #fff;
+}
